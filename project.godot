@@ -14,6 +14,10 @@ config/name="CreativeCoastGameJam2021"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://Globals.gd"
+
 [display]
 
 window/size/width=1920

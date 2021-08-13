@@ -24,8 +24,9 @@ func _physics_process(delta):
 		vertical_acceleration += player_acceleration
 	
 	move(horizontal_acceleration, vertical_acceleration)
-	
+
 func move(horizontal_acceleration, vertical_acceleration):
 	velocity = lerp(velocity, Vector2(horizontal_acceleration, vertical_acceleration), turn_speed)
 	move_and_slide(velocity)
-	rotation = velocity.angle()
+	look_at(get_global_mouse_position())
+	get_node("/root/Globals").set_player_position(global_position)
