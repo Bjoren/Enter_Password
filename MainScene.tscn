@@ -7,3 +7,5 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TwinStick" parent="." instance=ExtResource( 1 )]
+
+[node name="Hangman" type="Node2D" parent="."]
