@@ -3,7 +3,7 @@ extends KinematicBody2D
 export var player_acceleration:int = 500
 export var turn_speed:float = 0.05
 
-var velocity = Vector2.ZERO
+var velocity:= Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
