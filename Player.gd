@@ -28,3 +28,4 @@ func _physics_process(delta):
 func move(horizontal_acceleration, vertical_acceleration):
 	velocity = lerp(velocity, Vector2(horizontal_acceleration, vertical_acceleration), turn_speed)
 	move_and_slide(velocity)
+	rotation = velocity.angle()
