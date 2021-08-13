@@ -12,11 +12,10 @@ font_data = ExtResource( 2 )
 z_index = 500
 
 [node name="Label" type="Label" parent="."]
-margin_left = 668.613
-margin_top = 4.48987
-margin_right = 1553.61
-margin_bottom = 371.49
+margin_right = 1917.0
+margin_bottom = 322.0
 custom_fonts/font = SubResource( 1 )
+align = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
