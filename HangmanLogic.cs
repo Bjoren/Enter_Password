@@ -7,6 +7,7 @@ public class HangmanLogic : Node
 {
 	private string[] password_alternatives = { "HEMLIGT", "BLUNDER", "SAJDKICK" };
 	private string password = "hemligt";
+	private int nrCorrectGuesses = 0;
 	private const char mask = '_';
 	private char[] guess = { };
 	private Random rng = new Random();
@@ -72,23 +73,19 @@ public class HangmanLogic : Node
 		greyHintTextNode.Text = new string(greyHintChars.GetRange(0, nrReceivedHints).ToArray());
 	}
 
-	public bool GuessOneChar(char g)
+	public bool GuessOneChar(char guessChar)
 	{
 		bool isPlace = false;
-		if (password.Contains(g + ""))
+		if(password[nrCorrectGuesses] == guessChar)
 		{
-			for (int i = 0; i < password.Length; ++i)
-			{
-				if (g == password[i])
-				{
-					guess[i] = g;
-					SetGreyChar(g);
-				}
-			}
-			isPlace = true;
-			SetHintText();
-			SetGuessText();
+			guess[nrCorrectGuesses] = guessChar;
+			SetGreyChar(guessChar);
+			nrCorrectGuesses++;
+			isPlace = nrCorrectGuesses == password.Length;
 		}
+
+		SetHintText();
+		SetGuessText();
 		return isPlace;
 	}
 
