@@ -37,14 +37,11 @@ extents = Vector2( 960, 40 )
 extents = Vector2( 40, 540 )
 
 [node name="TwinStick" type="Node2D"]
+position = Vector2( 0, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 960, 540 )
-collision_layer = 3
-collision_mask = 3
 script = ExtResource( 3 )
-player_acceleration = null
-turn_speed = null
 
 [node name="PlayerSprite" type="Sprite" parent="Player"]
 rotation = 1.5708
@@ -104,6 +101,8 @@ default_color = Color( 0, 1, 1, 1 )
 joint_mode = 2
 
 [node name="Boundaries" type="KinematicBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="BoundariesNorth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 0 )
