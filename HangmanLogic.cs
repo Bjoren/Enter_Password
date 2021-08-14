@@ -136,15 +136,22 @@ public class HangmanLogic : Node
 	public bool GuessOneChar(char guessChar)
 	{
 		bool isPlace = false;
-		if(HasGuessingLeft() && password[nrCorrectGuesses] == guessChar)
+		if (HasGuessingLeft() && password[nrCorrectGuesses] == guessChar)
 		{
 			guess[nrCorrectGuesses] = guessChar;
 			SetGreyChar(guessChar);
 			nrCorrectGuesses++;
 			isPlace = nrCorrectGuesses == password.Length;
 			this.GetNode<AudioStreamPlayer2D>("../SfxCorrect").Play();
-		} else {
+		}
+		else
+		{
 			this.GetNode<AudioStreamPlayer2D>("../SfxIncorrect").Play();
+		}
+		
+		if (!HasGuessingLeft())
+		{
+			LevelCompleted();
 		}
 
 		SetHintText();
@@ -181,6 +188,8 @@ public class HangmanLogic : Node
 
 	public void LevelCompleted()
 	{
+		this.GetNode("../../TwinStick").Call("kill_enemies");
+		
 		level++;
 		if (level < 3)
 		{

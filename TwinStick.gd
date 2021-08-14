@@ -24,6 +24,8 @@ func _physics_process(_delta):
 				spawn_hint()
 			
 			$Spawn_timer.start()
+	else:
+		kill_enemies()
 		
 func spawn_enemies():
 	var difficulty = Globals.get_current_difficulty()
@@ -34,6 +36,10 @@ func spawn_enemies():
 		var instanced_enemy = enemy.instance()
 		instanced_enemy.set_position(random_position)
 		self.add_child(instanced_enemy)
+
+func kill_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.hurt()
 
 func spawn_hint():
 	var random_position = Vector2(rand_range(60, 1860), rand_range(160, 1020))
