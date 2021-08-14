@@ -19,8 +19,10 @@ font_data = ExtResource( 1 )
 z_index = 500
 
 [node name="PasswordText" type="Label" parent="."]
-margin_right = 1917.0
-margin_bottom = 127.0
+margin_left = -0.0155182
+margin_top = -0.0858307
+margin_right = 1916.98
+margin_bottom = 126.914
 custom_fonts/font = SubResource( 1 )
 text = "PASSWORDTEXT"
 align = 1
@@ -42,10 +44,10 @@ __meta__ = {
 }
 
 [node name="GreyHintText" type="Label" parent="."]
-margin_left = 0.420448
-margin_top = 84.388
-margin_right = 1920.42
-margin_bottom = 164.388
+margin_left = 0.00354737
+margin_top = 84.239
+margin_right = 1920.0
+margin_bottom = 164.239
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
 align = 1
