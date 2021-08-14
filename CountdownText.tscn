@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://HackermodeCountdown.cs" type="Script" id=1]
+[ext_resource path="res://Code.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/zero.png" type="Texture" id=3]
+[ext_resource path="res://Assets/one.png" type="Texture" id=4]
+[ext_resource path="res://hackermode10enable.cs" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 1100, 1900, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -1000, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+
+[node name="CountdownText" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+anchor_right = 1.0
+margin_left = -28.025
+margin_top = 322.715
+margin_right = 67.975
+margin_bottom = 450.715
+custom_fonts/font = SubResource( 1 )
+text = "0"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Particles2D0" type="Particles2D" parent="."]
+modulate = Color( 0, 1, 0.0666667, 1 )
+position = Vector2( 0, 1100 )
+amount = 1000
+lifetime = 10.0
+randomness = 0.23
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+script = ExtResource( 5 )
+
+[node name="Particles2D1" type="Particles2D" parent="."]
+modulate = Color( 0, 1, 0.0666667, 1 )
+position = Vector2( 0, 1100 )
+amount = 1000
+lifetime = 10.0
+randomness = 0.23
+process_material = SubResource( 2 )
+texture = ExtResource( 4 )
+script = ExtResource( 5 )
