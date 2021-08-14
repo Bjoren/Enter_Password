@@ -59,7 +59,8 @@ public class Hackermode : Node2D
 	{
 		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if ((KeyList)keyEvent.Scancode == KeyList.Enter)
+			bool isPlayerAlive = (bool)globals.Call("get_player_is_alive");
+			if ((KeyList)keyEvent.Scancode == KeyList.Enter && isPlayerAlive)
 			{
 				if (cooldown < 0.0f) {
 					start_hack = true;
