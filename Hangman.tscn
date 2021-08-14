@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Code.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://ScreenMatrix.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://HangmanInput.cs" type="Script" id=3]
 [ext_resource path="res://HangmanLogic.cs" type="Script" id=4]
 [ext_resource path="res://ClearTextScript.cs" type="Script" id=5]
+[ext_resource path="res://Assets/sfx/Correct.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/sfx/Wrong.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/sfx/Type.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -61,3 +64,12 @@ script = ExtResource( 4 )
 
 [node name="HangmanInput" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="SfxCorrect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="SfxIncorrect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="SfxType" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )

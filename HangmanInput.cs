@@ -4,10 +4,12 @@ using System;
 public class HangmanInput : Node
 {
 	private HangmanLogic hangmanLogic;
-
+	private Node globals;
+	
 	public override void _Ready()
 	{
 		hangmanLogic = GetNode<HangmanLogic>("../HangmanLogic");
+		globals = GetNode("/root/Globals");
 	}
 	public override void _Input(InputEvent inputEvent)
 	{
@@ -17,9 +19,10 @@ public class HangmanInput : Node
 			{
 				hangmanLogic.GiveHintChar();
 			}
-			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91)
+			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91 && (bool)globals.Get("in_hacker_mode"))
 			{
 				hangmanLogic.GuessOneChar((char)keyEvent.Scancode);
+				this.GetNode<AudioStreamPlayer2D>("../SfxType").Play();
 			}
 		}
 	}
