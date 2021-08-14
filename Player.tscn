@@ -30,28 +30,28 @@ damping = 30.23
 scale = 0.5
 color_ramp = SubResource( 3 )
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=5]
 colors = PoolColorArray( 0, 1, 0, 1, 1, 0, 0, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=7]
 max_value = 40.0
 _data = [ Vector2( 0.00657895, 14.9545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -10.1957, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 300.0
 orbit_velocity = 0.1
 orbit_velocity_random = 0.1
-scale_curve = SubResource( 10 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -97,4 +97,4 @@ one_shot = true
 speed_scale = 3.0
 explosiveness = 0.96
 randomness = 1.0
-process_material = SubResource( 11 )
+process_material = SubResource( 9 )
