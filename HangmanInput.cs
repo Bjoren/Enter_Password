@@ -15,7 +15,7 @@ public class HangmanInput : Node
 		{
 			if (keyEvent.Scancode == 32)
 			{
-				hangmanLogic.GiveHintChar('X');
+				hangmanLogic.GiveHintChar();
 			}
 			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91)
 			{
