@@ -23,7 +23,7 @@ float remap(float x, float mi, float ma) {
 	return clamp((x - mi) / (ma - mi), mi, ma);
 }
 
-float calShockAmp(vec2 screenXY, vec4 shock) {
+void calShockFX(vec2 screenXY, vec4 shock, inout vec2 out_uvOffset, inout float out_amp) {
 	vec2 xy = shock.xy;
 	float radius = shock.z;
 	float active = shock.w;
@@ -32,34 +32,36 @@ float calShockAmp(vec2 screenXY, vec4 shock) {
 	
 	float width = 25.0;
 	float hWidth = width / 2.0;
-	
-	//remap(dist / radius,);
-	
-	//float x = clamp((dist - hWidth) / dist, 0.0, 1.0);
-	
-	//float amp = step(dist, radius);
+
 	float amp = 1.0 - clamp(abs(dist - radius) / width, 0.0, 1.0); // [0,1,0] linear
+	vec2 uvOffset = normalize(screenXY - xy) * 0.01 * amp;
+	uvOffset = vec2(uvOffset.x, -uvOffset.y);
 	
 	amp *= active;
+	uvOffset *= active;
 	
-	return amp;
+	out_uvOffset += uvOffset;
+	out_amp += amp;
 }
 
 void fragment() {
 	vec2 screenXY = vec2(SCREEN_UV.x, 1.0 - SCREEN_UV.y) * SCREENSIZE;
 	
-	float shockAmp = 0.0;
-	shockAmp += calShockAmp(screenXY, shock0);
-	shockAmp += calShockAmp(screenXY, shock1);
-	shockAmp += calShockAmp(screenXY, shock2);
-	shockAmp += calShockAmp(screenXY, shock3);
-	shockAmp += calShockAmp(screenXY, shock4);
-	shockAmp += calShockAmp(screenXY, shock5);
-	shockAmp += calShockAmp(screenXY, shock6);
-	shockAmp += calShockAmp(screenXY, shock7);
+	vec2 uvOffset = vec2(0.0, 0.0);
+	float amp = 0.0;
+	calShockFX(screenXY, shock0, uvOffset, amp);
+	calShockFX(screenXY, shock1, uvOffset, amp);
+	calShockFX(screenXY, shock2, uvOffset, amp);
+	calShockFX(screenXY, shock3, uvOffset, amp);
+	calShockFX(screenXY, shock4, uvOffset, amp);
+	calShockFX(screenXY, shock5, uvOffset, amp);
+	calShockFX(screenXY, shock6, uvOffset, amp);
+	calShockFX(screenXY, shock7, uvOffset, amp);
 	
-	vec3 screenColor = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).xyz;
-	float t = (1.0 + cos(TIME * PI)) / 2.0; // [0,1]
-	vec3 finalColor = mix(screenColor, vec3(1.0), vec3(shockAmp));
-    COLOR = vec4(finalColor, 1.0);
+	vec3 screenColor = textureLod(SCREEN_TEXTURE, SCREEN_UV + uvOffset, 0.0).xyz;
+	//float t = (1.0 + cos(TIME * PI)) / 2.0; // [0,1]
+	//vec3 finalColor = mix(screenColor, vec3(1.0), vec3(shockAmp));
+    //COLOR = vec4(finalColor, 1.0);
+	COLOR = vec4(screenColor, 1.0);
+	//COLOR = vec4(normalize(uvOffset).xy, 0.0, 1.0);
 }
