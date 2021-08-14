@@ -10,13 +10,13 @@
 radius = 14.6693
 height = 24.4224
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0, 1, 0, 1, 0, 1, 0, 0 )
 
-[sub_resource type="GradientTexture" id=6]
-gradient = SubResource( 5 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=4]
 lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 10.0
@@ -28,12 +28,12 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 30.23
 scale = 0.5
-color_ramp = SubResource( 6 )
+color_ramp = SubResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 960, 40 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 40, 540 )
 
 [node name="TwinStick" type="Node2D"]
@@ -60,15 +60,17 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Zeroes" type="Particles2D" parent="Player"]
+amount = 6
 randomness = 0.61
-process_material = SubResource( 2 )
+local_coords = false
+process_material = SubResource( 4 )
 texture = ExtResource( 4 )
 
 [node name="Ones" type="Particles2D" parent="Player"]
 position = Vector2( 1, 0 )
 randomness = 0.61
 local_coords = false
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )
 texture = ExtResource( 5 )
 
 [node name="LineNorth" type="Line2D" parent="."]
@@ -103,16 +105,16 @@ joint_mode = 2
 
 [node name="BoundariesNorth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="BoundariesSouth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 1080 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="BoundariesEast" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 0, 540 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="BoundariesWest" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 1920, 540 )
-shape = SubResource( 4 )
+shape = SubResource( 6 )
