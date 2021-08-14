@@ -40,6 +40,7 @@ func hurt():
 	$Sprite.visible = false
 	$Explosion.emitting = true
 	yield(get_tree().create_timer(2),"timeout")
+	$SfxDead.play()
 	queue_free()
 
 func randomize_angle():

@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/one.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Light.png" type="Texture" id=2]
 [ext_resource path="res://Assets/zero.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Player.png" type="Texture" id=4]
 [ext_resource path="res://Player.gd" type="Script" id=5]
+[ext_resource path="res://Assets/sfx/Shoot.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/sfx/MoveLoop.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/sfx/KillEnemy.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.2346
@@ -97,3 +100,16 @@ speed_scale = 3.0
 explosiveness = 0.96
 randomness = 1.0
 process_material = SubResource( 9 )
+
+[node name="SfxShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -15.0
+
+[node name="SfxMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = 0.5
+autoplay = true
+
+[node name="SfxDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 0.3

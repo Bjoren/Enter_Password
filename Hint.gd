@@ -29,6 +29,8 @@ func collect():
 	$Label.text = "HINT!"
 	collected = true
 	
+	$Sfx.play()
+	
 	$Tween.interpolate_property(self, "modulate", 
 	Color(1, 1, 1, 1), Color(1, 1, 1, 0), 2.0, 
 	Tween.TRANS_LINEAR, Tween.EASE_IN)

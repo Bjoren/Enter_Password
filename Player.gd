@@ -5,7 +5,7 @@ var projectile = preload("res://Projectile.tscn")
 export var player_acceleration:int = 500
 export var turn_speed:float = 0.05
 
-export var fire_rate: int = 15
+export var fire_rate: int = 10
 export var projectile_speed:int = 1200
 
 var fire_cooldown:int = 0
@@ -38,6 +38,8 @@ func _physics_process(_delta):
 
 func fire():
 	var projectile_instance = projectile.instance()
+	$SfxShoot.set_pitch_scale(rand_range(0.9, 1.1))
+	$SfxShoot.play()
 	
 	projectile_instance.position = global_position
 	projectile_instance.set_velocity(Vector2(projectile_speed, 0).rotated(global_rotation))
@@ -49,9 +51,17 @@ func move(horizontal_acceleration, vertical_acceleration):
 	move_and_slide(velocity)
 	look_at(get_global_mouse_position())
 	get_node("/root/Globals").set_player_position(global_position)
+	
+	var speed = velocity.length()
+	var pitch_modifier = 0.0
+	if speed > 0:
+		pitch_modifier = speed/player_acceleration/2
+	$SfxMove.set_pitch_scale(0.8 + pitch_modifier)
 
 func hurt():
 	is_alive = false
+	$SfxMove.stop()
+	$SfxDead.play()
 	$Hurtbox.disabled = true
 	$PlayerSprite.visible = false
 	$Light2D.visible = false
