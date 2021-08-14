@@ -19,9 +19,10 @@ func _physics_process(_delta):
 		if $Spawn_timer.is_stopped():
 			spawn_enemies()
 			waves += 1
-			if waves % 5 == 0:
-				Globals.increase_current_difficulty()
+			if waves % 3 == 0:
 				spawn_hint()
+			if waves % 6 == 0:
+				Globals.increase_current_difficulty()
 			
 			$Spawn_timer.start()
 	else:
