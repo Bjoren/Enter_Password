@@ -5,9 +5,63 @@ using System.Linq;
 
 public class HangmanLogic : Node
 {
-	private string[] password_alternatives = { "HEMLIGT", "BLUNDER", "SAJDKICK" };
+	private string[] password_level1 = {
+		"COW",
+		"PET",
+		"YOU",
+		"JOB",
+		"JAM",
+		"AND",
+		"ONE",
+		"PEA",
+		"PEE",
+		"ASS",
+		"OHL",
+		"THE",
+		"MAN",
+		"HIM",
+		"RUN",
+		"CAR",
+		"BUS",
+		"FUN"
+	};
+
+	private string[] password_level2 = {
+		"PANIC",
+		"VEMOM",
+		"GNOME",
+		"YACHT",
+		"NINJA",
+		"MAGMA",
+		"FEVER",
+		"ANVIL",
+		"CACAO",
+		"HORDE",
+		"ONION",
+		"ARROW",
+		"WHALE"
+	};
+
+	private string[] password_level3 = {
+		"FREEDOM",
+		"AMERICA",
+		"PUMPKIN",
+		"HISTORY",
+		"DIAMOND",
+		"PROBLEM",
+		"SAUSAGE",
+		"POPCORN",
+		"CHICKEN",
+		"THUNDER",
+		"SNOWMAN",
+		"CALCIUM",
+		"HIPSTER",
+		"GOGGLES"
+	};
+	
 	private string password = "hemligt";
 	private int nrCorrectGuesses = 0;
+	private int level = 0;
 	private const char mask = '_';
 	private char[] guess = { };
 	private Random rng = new Random();
@@ -25,14 +79,20 @@ public class HangmanLogic : Node
 		passwordTextNode = GetNode<Label>("../PasswordText");
 		hintTextNode = GetNode<Label>("../HintText");
 		greyHintTextNode = GetNode<Label>("../GreyHintText");
-		LoadPassword();
+		LoadPassword(level);
 		LoadHintChars();
 		SetGuessText();
 	}
 
-	private void LoadPassword()
+	private void LoadPassword(int level)
 	{
-		password = password_alternatives[rng.Next(password_alternatives.Length)] + "";
+		switch(level)
+		{
+			case 0: password = password_level1[rng.Next(password_level1.Length)] + ""; break;
+			case 1: password = password_level2[rng.Next(password_level2.Length)] + ""; break;
+			case 2: password = password_level3[rng.Next(password_level3.Length)] + ""; break;
+		}
+
 		guess = new char[password.Length];
 		for (int i = 0; i < password.Length; ++i)
 		{
@@ -117,5 +177,14 @@ public class HangmanLogic : Node
 			SetHintText();
 		}
 		return flace;
+	}
+
+	public void LevelCompleted()
+	{
+		level++;
+		if (level < 3)
+		{
+			this.LoadPassword(level);
+		}
 	}
 }
