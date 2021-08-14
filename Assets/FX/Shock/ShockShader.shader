@@ -26,7 +26,7 @@ float remap(float x, float mi, float ma) {
 void calShockFX(vec2 screenXY, vec4 shock, inout vec2 out_uvOffset, inout float out_amp) {
 	vec2 xy = shock.xy;
 	float radius = shock.z;
-	float active = shock.w;
+	float ampliture = shock.w;
 	
 	float dist = distance(screenXY, xy);
 	
@@ -34,11 +34,11 @@ void calShockFX(vec2 screenXY, vec4 shock, inout vec2 out_uvOffset, inout float 
 	float hWidth = width / 2.0;
 
 	float amp = 1.0 - clamp(abs(dist - radius) / width, 0.0, 1.0); // [0,1,0] linear
-	vec2 uvOffset = normalize(screenXY - xy) * 0.01 * amp;
+	vec2 uvOffset = normalize(screenXY - xy) * amp;
 	uvOffset = vec2(uvOffset.x, -uvOffset.y);
 	
-	amp *= active;
-	uvOffset *= active;
+	amp *= ampliture;
+	uvOffset *= ampliture;
 	
 	out_uvOffset += uvOffset;
 	out_amp += amp;
