@@ -7,8 +7,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 11.2346
-height = 21.7419
+radius = 14.6693
+height = 24.4224
 
 [sub_resource type="Gradient" id=2]
 colors = PoolColorArray( 0, 1, 0, 1, 0, 1, 0, 0 )
