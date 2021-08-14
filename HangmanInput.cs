@@ -1,54 +1,25 @@
 using Godot;
 using System;
 
-public class HangmanInput : Godot.Label
+public class HangmanInput : Node
 {
-	private string [] password_alternatives = {"HEMLIGT", "BLUNDER", "SAJDKICK"};
-	private string password = "hemligt";
-	private const char mask = '*';
-	private char [] guess = {};
-	private Random rng = new Random();
+	private HangmanLogic hangmanLogic;
 
-	private void LoadPassword() {
-		password = password_alternatives[rng.Next(password_alternatives.Length)] + "";
-		guess = new char[password.Length];
-		for (int i = 0; i < password.Length; ++i) {
-			guess[i] = mask;
-		}
-		SetGuessText();
-	}
-
-	public bool GuessOneChar(char g) {
-		bool isPlace = false;
-		if (password.Contains(g + "")) {
-			for (int i = 0; i < password.Length; ++i) {
-				if (g == password[i]) {
-					guess[i] = g;
-				}
-			}
-			isPlace = true;
-			SetGuessText();
-		}
-		//GD.Print(new String(guess));
-		//GD.Print(password + "");
-		return isPlace;
-	}
-
-	public void SetGuessText() {
-		this.Text = new string(guess);
-	}
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		LoadPassword();
+		hangmanLogic = GetNode<HangmanLogic>("../HangmanLogic");
 	}
 	public override void _Input(InputEvent inputEvent)
 	{
 		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
 		{
+			if (keyEvent.Scancode == 32)
+			{
+				hangmanLogic.GiveHintChar('X');
+			}
 			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91)
 			{
-				GuessOneChar((char)keyEvent.Scancode);
+				hangmanLogic.GuessOneChar((char)keyEvent.Scancode);
 			}
 		}
 	}
