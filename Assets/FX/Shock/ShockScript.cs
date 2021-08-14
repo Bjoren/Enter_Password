@@ -45,6 +45,7 @@ public class ShockScript
 			x.currentTime += delta;
 			x.currentRadius = x.radialSpeed * x.currentTime;
 		});
+
 		Instances.SelectRemove(x => x.currentTime > x.targetTime);
 	}
 
