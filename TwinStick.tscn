@@ -35,7 +35,7 @@ color_ramp = SubResource( 3 )
 extents = Vector2( 960, 40 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 40, 401.82 )
+extents = Vector2( 40, 480 )
 
 [node name="TwinStick" type="Node2D"]
 position = Vector2( 0, -1 )
@@ -114,11 +114,11 @@ position = Vector2( 960, 1080 )
 shape = SubResource( 5 )
 
 [node name="BoundariesEast" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2( 0, 540 )
+position = Vector2( 0, 580 )
 shape = SubResource( 6 )
 
 [node name="BoundariesWest" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2( 1920, 540 )
+position = Vector2( 1920, 580 )
 shape = SubResource( 6 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
