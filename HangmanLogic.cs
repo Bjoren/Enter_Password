@@ -12,15 +12,18 @@ public class HangmanLogic : Node
 	private Random rng = new Random();
 
 	private List<char> hintChars = new List<char>();
+	private List<char> greyHintChars = new List<char>();
 	private int nrReceivedHints = 0;
 
 	private Label passwordTextNode;
 	private Label hintTextNode;
+	private Label greyHintTextNode;
 
 	public override void _Ready()
 	{
 		passwordTextNode = GetNode<Label>("../PasswordText");
 		hintTextNode = GetNode<Label>("../HintText");
+		greyHintTextNode = GetNode<Label>("../GreyHintText");
 		LoadPassword();
 		LoadHintChars();
 		SetGuessText();
@@ -42,6 +45,7 @@ public class HangmanLogic : Node
 		passwordList = passwordList.OrderBy(a => rng.Next()).ToList();
 
 		hintChars = passwordList;
+		hintChars.ForEach(c => greyHintChars.Add(' '));
 	}
 
 	private void SetGuessText()
@@ -51,7 +55,21 @@ public class HangmanLogic : Node
 
 	private void SetHintText()
 	{
-		hintTextNode.Text = new string(hintChars.GetRange(0, nrReceivedHints).ToArray());
+		List<char> whiteChars = new List<char>();
+
+		for(int i = 0; i < hintChars.Count; i++)
+		{
+			if (hintChars[i] == greyHintChars[i])
+			{
+				whiteChars.Add(' ');
+			} else
+			{
+				whiteChars.Add(hintChars[i]);
+			}
+		}
+
+		hintTextNode.Text = new string(whiteChars.GetRange(0, nrReceivedHints).ToArray());
+		greyHintTextNode.Text = new string(greyHintChars.GetRange(0, nrReceivedHints).ToArray());
 	}
 
 	public bool GuessOneChar(char g)
@@ -64,12 +82,25 @@ public class HangmanLogic : Node
 				if (g == password[i])
 				{
 					guess[i] = g;
+					SetGreyChar(g);
 				}
 			}
 			isPlace = true;
+			SetHintText();
 			SetGuessText();
 		}
 		return isPlace;
+	}
+
+	private void SetGreyChar(char c)
+	{
+		for(int i = 0; i < hintChars.Count; i++)
+		{
+			if(hintChars[i] == c)
+			{
+				greyHintChars[i] = c;
+			}
+		}
 	}
 
 	public bool GiveHintChar()

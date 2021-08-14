@@ -22,7 +22,7 @@ z_index = 500
 margin_right = 1917.0
 margin_bottom = 127.0
 custom_fonts/font = SubResource( 1 )
-text = "PasswordText"
+text = "PASSWORDTEXT"
 align = 1
 script = ExtResource( 5 )
 __meta__ = {
@@ -34,7 +34,20 @@ margin_top = 84.2764
 margin_right = 1920.0
 margin_bottom = 164.276
 custom_fonts/font = SubResource( 2 )
-text = "Test fan"
+text = "HINTCHARS"
+align = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GreyHintText" type="Label" parent="."]
+margin_left = 0.420448
+margin_top = 84.388
+margin_right = 1920.42
+margin_bottom = 164.388
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.403922, 0.403922, 0.403922, 1 )
 align = 1
 script = ExtResource( 5 )
 __meta__ = {
