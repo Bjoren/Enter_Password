@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/FX/Shock/ShockShader.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/SCREENSIZE = Vector2( 1920, 1080 )
+shader_param/testColor = Vector3( 0, 1, 0 )
+shader_param/shock0 = null
+shader_param/shock1 = null
+shader_param/shock2 = null
+shader_param/shock3 = null
+shader_param/shock4 = null
+shader_param/shock5 = null
+shader_param/shock6 = null
+shader_param/shock7 = null
