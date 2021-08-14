@@ -81,7 +81,7 @@ public class HangmanLogic : Node
 			guess[nrCorrectGuesses] = guessChar;
 			SetGreyChar(guessChar);
 			nrCorrectGuesses++;
-			isPlace = true;
+			isPlace = nrCorrectGuesses == password.Length;
 		}
 
 		SetHintText();
