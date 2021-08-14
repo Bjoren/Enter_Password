@@ -6,6 +6,13 @@ var player_is_alive = true
 var fx_manager:Node = null
 var in_hacker_mode = false
 
+func _init():
+	var player_position:Vector2 = Vector2.ZERO
+	var current_difficulty:int = 1
+	var player_is_alive = true
+	var fx_manager:Node = null
+	var in_hacker_mode = false
+
 func get_player_position() -> Vector2:
 	return player_position
 	
