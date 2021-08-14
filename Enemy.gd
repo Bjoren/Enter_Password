@@ -16,10 +16,19 @@ func _ready():
 
 func _physics_process(_delta):
 	var player_position = Globals.get_player_position()
-	var new_velocity = Vector2(-acceleration, 0).rotated(global_position.angle_to_point(player_position) + random_angle)
+	
+	var new_velocity = Vector2.ZERO
+	if Globals.get_player_is_alive():
+		new_velocity = Vector2(-acceleration, 0).rotated(global_position.angle_to_point(player_position) + random_angle)
 	
 	velocity = lerp(velocity, new_velocity, turn_speed)
 	move_and_slide(velocity)
+	
+	for slide in get_slide_count():
+		var collision = get_slide_collision(slide)
+		if collision.get_collider().is_in_group("player"):
+			collision.collider.hurt()
+	
 	look_at(Globals.get_player_position())
 	
 	angle_change_timer -= 1
@@ -36,4 +45,3 @@ func hurt():
 func randomize_angle():
 	angle_change_timer = randi() % int(angle_timer_variance.x) + int(angle_timer_variance.y)
 	random_angle = rand_range(random_angle_variance * -1, random_angle_variance)
-	print(random_angle)

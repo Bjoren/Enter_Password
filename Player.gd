@@ -11,27 +11,30 @@ export var projectile_speed:int = 800
 var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
 
+var is_alive:bool = true
+
 func _physics_process(_delta):
-	var horizontal_acceleration = 0
-	var vertical_acceleration = 0
-	
-	if fire_cooldown > 0:
-		fire_cooldown -= 1
-	
-	if Input.is_action_pressed("ui_left"):
-		horizontal_acceleration -= player_acceleration
-	if Input.is_action_pressed("ui_right"):
-		horizontal_acceleration += player_acceleration
-	if Input.is_action_pressed("ui_up"):
-		vertical_acceleration -= player_acceleration
-	if Input.is_action_pressed("ui_down"):
-		vertical_acceleration += player_acceleration
+	if is_alive:
+		var horizontal_acceleration = 0
+		var vertical_acceleration = 0
 		
-	move(horizontal_acceleration, vertical_acceleration)
-	
-	if Input.is_action_pressed("fire") && fire_cooldown == 0:
-		fire()
-		fire_cooldown = fire_rate
+		if fire_cooldown > 0:
+			fire_cooldown -= 1
+		
+		if Input.is_action_pressed("ui_left"):
+			horizontal_acceleration -= player_acceleration
+		if Input.is_action_pressed("ui_right"):
+			horizontal_acceleration += player_acceleration
+		if Input.is_action_pressed("ui_up"):
+			vertical_acceleration -= player_acceleration
+		if Input.is_action_pressed("ui_down"):
+			vertical_acceleration += player_acceleration
+			
+		move(horizontal_acceleration, vertical_acceleration)
+		
+		if Input.is_action_pressed("fire") && fire_cooldown == 0:
+			fire()
+			fire_cooldown = fire_rate
 
 func fire():
 	var projectile_instance = projectile.instance()
@@ -46,3 +49,13 @@ func move(horizontal_acceleration, vertical_acceleration):
 	move_and_slide(velocity)
 	look_at(get_global_mouse_position())
 	get_node("/root/Globals").set_player_position(global_position)
+
+func hurt():
+	is_alive = false
+	$Hurtbox.disabled = true
+	$PlayerSprite.visible = false
+	$Light2D.visible = false
+	$Ones.emitting = false
+	$Zeroes.emitting = false
+	$Explosion.emitting = true
+	Globals.set_player_is_alive(false)

@@ -13,7 +13,6 @@ func _physics_process(delta):
 	rotation = velocity.angle()
 	
 	if collision:
-		print("Collision!")
 		var collider = collision.collider
 	
 		if collider.is_in_group("enemies"):
