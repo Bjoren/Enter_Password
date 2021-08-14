@@ -20,22 +20,22 @@ func _physics_process(_delta):
 		
 		if fire_cooldown > 0:
 			fire_cooldown -= 1
-		
-		if Input.is_action_pressed("ui_left"):
-			horizontal_acceleration -= player_acceleration
-		if Input.is_action_pressed("ui_right"):
-			horizontal_acceleration += player_acceleration
-		if Input.is_action_pressed("ui_up"):
-			vertical_acceleration -= player_acceleration
-		if Input.is_action_pressed("ui_down"):
-			vertical_acceleration += player_acceleration
+			
+		if !Globals.in_hacker_mode:
+			if Input.is_action_pressed("ui_left"):
+				horizontal_acceleration -= player_acceleration
+			if Input.is_action_pressed("ui_right"):
+				horizontal_acceleration += player_acceleration
+			if Input.is_action_pressed("ui_up"):
+				vertical_acceleration -= player_acceleration
+			if Input.is_action_pressed("ui_down"):
+				vertical_acceleration += player_acceleration
+			if Input.is_action_pressed("fire") && fire_cooldown == 0:
+				fire()
+				fire_cooldown = fire_rate
 			
 		move(horizontal_acceleration, vertical_acceleration)
 		
-		if Input.is_action_pressed("fire") && fire_cooldown == 0:
-			fire()
-			fire_cooldown = fire_rate
-
 func fire():
 	var projectile_instance = projectile.instance()
 	$SfxShoot.set_pitch_scale(rand_range(0.9, 1.1))
@@ -49,7 +49,9 @@ func fire():
 func move(horizontal_acceleration, vertical_acceleration):
 	velocity = lerp(velocity, Vector2(horizontal_acceleration, vertical_acceleration), turn_speed)
 	move_and_slide(velocity)
-	look_at(get_global_mouse_position())
+	
+	if !Globals.in_hacker_mode:
+		look_at(get_global_mouse_position())
 	get_node("/root/Globals").set_player_position(global_position)
 	
 	var speed = velocity.length()
