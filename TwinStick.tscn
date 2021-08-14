@@ -42,6 +42,7 @@ position = Vector2( 0, -1 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( 960, 540 )
+collision_mask = 6
 script = ExtResource( 3 )
 
 [node name="PlayerSprite" type="Sprite" parent="Player"]
@@ -102,8 +103,8 @@ default_color = Color( 0, 1, 1, 1 )
 joint_mode = 2
 
 [node name="Boundaries" type="KinematicBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 4
+collision_mask = 0
 
 [node name="BoundariesNorth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 100 )
