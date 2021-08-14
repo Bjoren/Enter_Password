@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class HangmanLogic : Node
 {
@@ -9,7 +11,7 @@ public class HangmanLogic : Node
 	private char[] guess = { };
 	private Random rng = new Random();
 
-	private char[] hintChars = { };
+	private List<char> hintChars = new List<char>();
 	private int nrReceivedHints = 0;
 
 	private Label passwordTextNode;
@@ -36,7 +38,10 @@ public class HangmanLogic : Node
 
 	private void LoadHintChars()
 	{
-		hintChars = new char[password.Length];
+		List<char> passwordList = new List<char>(password);
+		passwordList = passwordList.OrderBy(a => rng.Next()).ToList();
+
+		hintChars = passwordList;
 	}
 
 	private void SetGuessText()
@@ -46,7 +51,7 @@ public class HangmanLogic : Node
 
 	private void SetHintText()
 	{
-		hintTextNode.Text = new string(hintChars);
+		hintTextNode.Text = new string(hintChars.GetRange(0, nrReceivedHints).ToArray());
 	}
 
 	public bool GuessOneChar(char g)
@@ -67,17 +72,14 @@ public class HangmanLogic : Node
 		return isPlace;
 	}
 
-	public bool GiveHintChar(char hintChar)
+	public bool GiveHintChar()
 	{
 		bool flace = true;
-
-		if (nrReceivedHints < hintChars.Length)
+		if (nrReceivedHints < hintChars.Count)
 		{
-			hintChars[nrReceivedHints] = hintChar;
 			nrReceivedHints++;
+			SetHintText();
 		}
-
-		SetHintText();
 		return flace;
 	}
 }
