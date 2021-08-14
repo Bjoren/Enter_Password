@@ -59,13 +59,17 @@ func move(horizontal_acceleration, vertical_acceleration):
 	$SfxMove.set_pitch_scale(0.8 + pitch_modifier)
 
 func hurt():
-	is_alive = false
-	$SfxMove.stop()
-	$SfxDead.play()
-	$Hurtbox.disabled = true
-	$PlayerSprite.visible = false
-	$Light2D.visible = false
-	$Ones.emitting = false
-	$Zeroes.emitting = false
-	$Explosion.emitting = true
-	Globals.set_player_is_alive(false)
+	if is_alive:
+		is_alive = false
+		$SfxMove.stop()
+		$SfxDead.play()
+		$Hurtbox.disabled = true
+		$PlayerSprite.visible = false
+		$Light2D.visible = false
+		$Ones.emitting = false
+		$Zeroes.emitting = false
+		$Explosion.emitting = true
+		Globals.set_player_is_alive(false)
+		Globals.fx_manager.InstantiateShock(self.position, 600, 1600, 0.1)
+		Globals.fx_manager.InstantiateShock(self.position, 300, 800, 0.1)
+		Globals.fx_manager.InstantiateShock(self.position, 150, 400, 0.1)

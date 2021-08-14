@@ -76,7 +76,7 @@ public class HangmanLogic : Node
 	public bool GuessOneChar(char guessChar)
 	{
 		bool isPlace = false;
-		if(password[nrCorrectGuesses] == guessChar)
+		if(HasGuessingLeft() && password[nrCorrectGuesses] == guessChar)
 		{
 			guess[nrCorrectGuesses] = guessChar;
 			SetGreyChar(guessChar);
@@ -88,6 +88,11 @@ public class HangmanLogic : Node
 		SetGuessText();
 		return isPlace;
 	}
+
+	public bool HasGuessingLeft()
+	{
+		return nrCorrectGuesses < password.Length;
+	}	
 
 	private void SetGreyChar(char c)
 	{

@@ -1,20 +1,21 @@
 using Godot;
 using System;
 
-public class Button : Godot.Button
+public class RetryButton : Button
 {
+	// Declare member variables here. Examples:
+	// private int a = 2;
+	// private string b = "text";
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		this.Hide();
 	}
 
 	public override void _Pressed()
 	{
-		Node globals = this.GetNode<Node>("/root/Globals");
-		globals.Call("set_player_is_alive", true);
-		this.Hide();
+		GetTree().ReloadCurrentScene();
 		base._Pressed();
 	}
 
