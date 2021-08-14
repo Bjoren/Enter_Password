@@ -3,10 +3,10 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TwinStick.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 960, 40 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40, 480 )
 
 [node name="TwinStick" type="Node2D"]
@@ -21,19 +21,19 @@ collision_mask = 0
 
 [node name="BoundariesNorth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 100 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="BoundariesSouth" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 960, 1080 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="BoundariesEast" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 0, 580 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="BoundariesWest" type="CollisionShape2D" parent="Boundaries"]
 position = Vector2( 1920, 580 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="LineNorth" type="Line2D" parent="Boundaries"]
 position = Vector2( 40, 140 )
