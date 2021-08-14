@@ -13,12 +13,16 @@ func _physics_process(delta):
 	rotation = velocity.angle()
 	
 	if collision:
+		print("Collision!")
 		var collider = collision.collider
 	
 		if collider.is_in_group("enemies"):
 			collider.hurt()
 	
 		$Sprite.hide()
+		$CollisionShape2D.disabled = true
+		$Explosion.one_shot = true
+		$Explosion.emitting = true
 		yield(get_tree().create_timer(1),"timeout")
 		# Particles, light etc
 		queue_free()
