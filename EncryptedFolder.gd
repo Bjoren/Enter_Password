@@ -11,6 +11,9 @@ func _physics_process(delta):
 		position += Vector2(rand_range(-5, 5), rand_range(-5, 5))
 	
 func hurt():
+	if !get_node("/root/Globals").get_player_is_alive():
+		return
+	
 	health -= 1
 	position += Vector2(rand_range(-5, 5), rand_range(-5, 5))
 	$Percent.text = str(int(max(health/max_health*100, 0))) + "%"

@@ -74,14 +74,24 @@ public class HangmanLogic : Node
 	private Label hintTextNode;
 	private Label greyHintTextNode;
 
+	private void Reset()
+	{
+		nrReceivedHints = 0;
+		nrCorrectGuesses = 0;
+		hintChars.Clear();
+		greyHintChars.Clear();
+
+		LoadPassword(level);
+		LoadHintChars();
+		SetGuessText();
+	}
+
 	public override void _Ready()
 	{
 		passwordTextNode = GetNode<Label>("../PasswordText");
 		hintTextNode = GetNode<Label>("../HintText");
 		greyHintTextNode = GetNode<Label>("../GreyHintText");
-		LoadPassword(level);
-		LoadHintChars();
-		SetGuessText();
+		Reset();
 	}
 
 	private void LoadPassword(int level)
@@ -91,6 +101,7 @@ public class HangmanLogic : Node
 			case 0: password = password_level1[rng.Next(password_level1.Length)] + ""; break;
 			case 1: password = password_level2[rng.Next(password_level2.Length)] + ""; break;
 			case 2: password = password_level3[rng.Next(password_level3.Length)] + ""; break;
+			default: password = ""; break;
 		}
 
 		guess = new char[password.Length];
@@ -183,17 +194,20 @@ public class HangmanLogic : Node
 			nrReceivedHints++;
 			SetHintText();
 		}
+		
 		return flace;
 	}
 
 	public void LevelCompleted()
 	{
 		this.GetNode("../../TwinStick").Call("kill_enemies");
-		
+		this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
+		this.GetNode("/root/Globals").Call("init");
+
 		level++;
 		if (level < 3)
 		{
-			this.LoadPassword(level);
+			Reset();
 		}
 	}
 }
