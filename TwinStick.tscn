@@ -10,13 +10,13 @@
 radius = 14.6693
 height = 24.4224
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=7]
 colors = PoolColorArray( 0, 1, 0, 1, 0, 1, 0, 0 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=9]
 lifetime_randomness = 1.0
 emission_shape = 1
 emission_sphere_radius = 10.0
@@ -28,7 +28,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 30.23
 scale = 0.5
-color_ramp = SubResource( 3 )
+color_ramp = SubResource( 8 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 960, 40 )
@@ -43,8 +43,6 @@ position = Vector2( 960, 540 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 3 )
-player_acceleration = null
-turn_speed = null
 
 [node name="PlayerSprite" type="Sprite" parent="Player"]
 rotation = 1.5708
@@ -65,18 +63,18 @@ shape = SubResource( 1 )
 amount = 6
 randomness = 0.61
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 9 )
 texture = ExtResource( 4 )
 
 [node name="Ones" type="Particles2D" parent="Player"]
 position = Vector2( 1, 0 )
 randomness = 0.61
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 9 )
 texture = ExtResource( 5 )
 
 [node name="LineNorth" type="Line2D" parent="."]
-position = Vector2( 40, 40 )
+position = Vector2( 40, 140 )
 points = PoolVector2Array( 0, 0, 1840, 0 )
 width = 6.0
 default_color = Color( 0, 1, 1, 1 )
@@ -90,14 +88,16 @@ default_color = Color( 0, 1, 1, 1 )
 joint_mode = 2
 
 [node name="LineEast" type="Line2D" parent="."]
-position = Vector2( 40, 1040 )
+position = Vector2( 40, 1040.58 )
+scale = Vector2( 1, 0.903566 )
 points = PoolVector2Array( 0, 0, 0, -1000 )
 width = 6.0
 default_color = Color( 0, 1, 1, 1 )
 joint_mode = 2
 
 [node name="LineWest" type="Line2D" parent="."]
-position = Vector2( 40, 1040 )
+position = Vector2( 40, 1040.58 )
+scale = Vector2( 1, 0.903639 )
 points = PoolVector2Array( 1840, -1000, 1840, 0 )
 width = 6.0
 default_color = Color( 0, 1, 1, 1 )
@@ -106,7 +106,7 @@ joint_mode = 2
 [node name="Boundaries" type="KinematicBody2D" parent="."]
 
 [node name="BoundariesNorth" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2( 960, 0 )
+position = Vector2( 960, 100 )
 shape = SubResource( 5 )
 
 [node name="BoundariesSouth" type="CollisionShape2D" parent="Boundaries"]
