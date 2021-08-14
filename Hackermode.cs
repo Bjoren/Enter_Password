@@ -22,6 +22,7 @@ public class Hackermode : Node2D
 		globals.Set("in_hacker_mode", false);
 		scale1_timer = scale1_rst;
 		scale2_timer = scale2_rst;
+		this.Position = new Vector2(0, 0);
 		this.Scale = new Vector2(1,1);
 		cooldown = 10.0f;
 	}

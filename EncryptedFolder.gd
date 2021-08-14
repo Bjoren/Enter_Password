@@ -10,6 +10,9 @@ func _ready():
 #	pass
 	
 func hurt():
+	if !get_node("/root/Globals").get_player_is_alive():
+		return
+	
 	health -= 1
 	
 	$Percent.text = str(int(health/max_health*100)) + "%"

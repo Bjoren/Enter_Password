@@ -22,7 +22,8 @@ public class HackermodeCountdown : Label
 
 	public override void _Process(float delta)
 	{
-		if (countdown > 0.0f)
+		bool isHackerMode = (bool)globals.Get("in_hacker_mode");
+		if (countdown > 0.0f && isHackerMode)
 		{
 			reset = true;
 			countdown -= delta / Engine.TimeScale;
@@ -34,7 +35,7 @@ public class HackermodeCountdown : Label
 				GetNode<Hackermode>("../../Hangman").reset_animate_enter_hackermode();
 				reset = false;
 			}
-			if ((bool)globals.Get("in_hacker_mode"))
+			if (isHackerMode)
 				countdown = countdown_rst;
 		}
 	}

@@ -16,6 +16,7 @@ public class RetryButton : Button
 	public override void _Pressed()
 	{
 		GetTree().ReloadCurrentScene();
+		GetNode("/root/Globals").Call("_init");
 		base._Pressed();
 	}
 
