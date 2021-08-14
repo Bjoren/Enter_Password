@@ -3,6 +3,8 @@ using System;
 
 public class Menu : Node
 {
+	Label titleLabel;
+	Label descLabel;
 	Button retryButton;
 	public bool HasBeenAlive { get;  set; } = false;
 
@@ -10,6 +12,9 @@ public class Menu : Node
 	public override void _Ready()
 	{
 		retryButton = this.GetNode<Button>("RetryButton");
+		titleLabel = this.GetNode<Label>("Title");
+		descLabel = this.GetNode<Label>("Desc");
+		
 		Node globals = this.GetNode<Node>("/root/Globals");
 		globals.Call("set_player_is_alive", false);
 		this.HasBeenAlive = false;
@@ -23,6 +28,12 @@ public class Menu : Node
 		if (!isAlive && HasBeenAlive)
 		{
 			retryButton.Show();
+		}
+		
+		if (isAlive || HasBeenAlive)
+		{
+			titleLabel.Hide();
+			descLabel.Hide();
 		}
   }
 }
