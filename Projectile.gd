@@ -16,7 +16,10 @@ func _physics_process(delta):
 		var collider = collision.collider
 	
 		if collider.is_in_group("enemies"):
+			$SfxHit.play()
 			collider.hurt()
+		else:
+			$SfxDud.play()
 	
 		$Sprite.hide()
 		$CollisionShape2D.disabled = true

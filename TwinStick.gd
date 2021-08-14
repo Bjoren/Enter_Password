@@ -20,7 +20,6 @@ func _physics_process(_delta):
 			spawn_enemies()
 			waves += 1
 			if waves % 5 == 0:
-				print("Difficulty up!")
 				Globals.increase_current_difficulty()
 				spawn_hint()
 			

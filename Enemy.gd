@@ -41,6 +41,7 @@ func hurt():
 	$Explosion.emitting = true
 	Globals.fx_manager.InstantiateShock(self.position, 300, 200, 0.01)
 	yield(get_tree().create_timer(2),"timeout")
+	$SfxDead.play()
 	queue_free()
 
 func randomize_angle():

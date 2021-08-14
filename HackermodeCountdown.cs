@@ -7,35 +7,35 @@ public class HackermodeCountdown : Label
 	// private int a = 2;
 	// private string b = "text";
 
-	float countdown_rst = 5.0f;
-	float countdown = 0.0f;
+	private float countdown_rst = 5.0f;
+	private float countdown = 0.0f;
+	private bool reset = false;
+	Node globals;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		/* this.Position = new Vector2(0.0f, GetViewportRect().Size.y / 2.5f); */
 		this.Text = "";
-	}
-
-	public override void _Input(InputEvent inputEvent)
-	{
-		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
-		{
-			if ((KeyList)keyEvent.Scancode == KeyList.Enter)
-			{
-				countdown = countdown_rst;
-			}
-		}
+		globals = GetNode("/root/Globals");
 	}
 
 	public override void _Process(float delta)
 	{
 		if (countdown > 0.0f)
 		{
-			countdown -= delta;
+			reset = true;
+			countdown -= delta / Engine.TimeScale;
 			this.Text = ((int)(countdown + 0.99f)).ToString();
 		}
-		else
+		else {
 			this.Text = "";
+			if (reset) {
+				GetNode<Hackermode>("../../Hangman").reset_animate_enter_hackermode();
+				reset = false;
+			}
+			if ((bool)globals.Get("in_hacker_mode"))
+				countdown = countdown_rst;
+		}
 	}
 }
