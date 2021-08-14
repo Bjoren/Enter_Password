@@ -43,6 +43,8 @@ position = Vector2( 960, 540 )
 collision_layer = 3
 collision_mask = 3
 script = ExtResource( 3 )
+player_acceleration = null
+turn_speed = null
 
 [node name="PlayerSprite" type="Sprite" parent="Player"]
 rotation = 1.5708
