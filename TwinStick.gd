@@ -3,7 +3,7 @@ extends Node2D
 var enemy = preload("res://Enemy.tscn")
 var hint = preload("res://Hint.tscn")
 
-var enemy_base_number = 2
+var enemy_base_number = 1
 var enemy_difficulty_multiplier = 1
 
 var waves = 0
@@ -19,7 +19,7 @@ func _physics_process(_delta):
 		if $Spawn_timer.is_stopped():
 			spawn_enemies()
 			waves += 1
-			if waves % 2 == 0:
+			if waves % 5 == 0:
 				print("Difficulty up!")
 				Globals.increase_current_difficulty()
 				spawn_hint()
