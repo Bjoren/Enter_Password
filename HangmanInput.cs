@@ -1,22 +1,22 @@
 using Godot;
 using System;
 
-public class HangmanInput : Node2D
+public class HangmanInput : Godot.Label
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
 	private string [] password_alternatives = {"HEMLIGT", "BLUNDER", "SAJDKICK"};
 	private string password = "hemligt";
-	private char [] guess = {'-'};
+	private const char mask = '*';
+	private char [] guess = {};
+	private Random rng = new Random();
 
 	private void LoadPassword() {
-		int walla = password_alternatives.Length;
-		int kek = 1;
-		password = password_alternatives[kek] + "";
+		password = password_alternatives[rng.Next(password_alternatives.Length)] + "";
 		guess = new char[password.Length];
 		for (int i = 0; i < password.Length; ++i) {
-			guess[i] = '-';
+			guess[i] = mask;
 		}
 	}
 
@@ -30,13 +30,13 @@ public class HangmanInput : Node2D
 			}
 			isPlace = true;
 		}
-		GD.Print(new String(guess));
-		GD.Print(password + "");
+		//GD.Print(new String(guess));
+		//GD.Print(password + "");
 		return isPlace;
 	}
 
-	public string GetCurrentGuess() {
-		return new string(guess);
+	public void SetGuessText() {
+		this.Text = new string(guess);
 	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -52,6 +52,7 @@ public class HangmanInput : Node2D
 				GuessOneChar((char)keyEvent.Scancode);
 			}
 		}
+		SetGuessText();
 	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Label.cs" type="Script" id=1]
 [ext_resource path="res://ScreenMatrix.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://HangmanInput.cs" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -16,7 +16,7 @@ margin_right = 1917.0
 margin_bottom = 322.0
 custom_fonts/font = SubResource( 1 )
 align = 1
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
