@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class CenterNode : Node2D
+public class hackermode10enable : Particles2D
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -10,7 +10,18 @@ public class CenterNode : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		this.Position = new Vector2(GetViewportRect().Size.x / 2.0f, 0);
+		this.Emitting = false;
+	}
+
+	public override void _Input(InputEvent inputEvent)
+	{
+		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
+		{
+			if ((KeyList)keyEvent.Scancode == KeyList.Enter)
+			{
+				this.Emitting = true;
+			}
+		}
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
