@@ -6,7 +6,7 @@ export var player_acceleration:int = 500
 export var turn_speed:float = 0.05
 
 export var fire_rate: int = 15
-export var projectile_speed:int = 800
+export var projectile_speed:int = 1200
 
 var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
