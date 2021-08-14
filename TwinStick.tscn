@@ -123,4 +123,55 @@ position = Vector2( 1920, 580 )
 shape = SubResource( 6 )
 
 [node name="Enemy" parent="." instance=ExtResource( 6 )]
-position = Vector2( 717.505, 527.017 )
+position = Vector2( -241.069, 394.471 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -377.702, 637.564 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -255.211, 441.14 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -366.927, 298.579 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 6 )]
+position = Vector2( -503.56, 541.672 )
+
+[node name="Enemy6" parent="." instance=ExtResource( 6 )]
+position = Vector2( -381.069, 345.248 )
+
+[node name="Enemy7" parent="." instance=ExtResource( 6 )]
+position = Vector2( -269.537, 192.2 )
+
+[node name="Enemy8" parent="." instance=ExtResource( 6 )]
+position = Vector2( -406.17, 435.292 )
+
+[node name="Enemy9" parent="." instance=ExtResource( 6 )]
+position = Vector2( -283.679, 238.869 )
+
+[node name="Enemy10" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4450.88, 1971.89 )
+
+[node name="Enemy11" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4314.24, 2214.99 )
+
+[node name="Enemy12" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4436.74, 2018.56 )
+
+[node name="Enemy13" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4325.02, 1876 )
+
+[node name="Enemy14" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4188.39, 2119.09 )
+
+[node name="Enemy15" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4310.88, 1922.67 )
+
+[node name="Enemy16" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4422.41, 1769.62 )
+
+[node name="Enemy17" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4285.78, 2012.71 )
+
+[node name="Enemy18" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4408.27, 1816.29 )

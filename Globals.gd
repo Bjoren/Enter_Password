@@ -11,3 +11,9 @@ func set_player_position(new_position):
 
 func get_current_difficulty():
 	return current_difficulty
+
+func increase_current_difficulty():
+	current_difficulty += 1
+	
+func reset_current_difficulty():
+	current_difficulty = 1

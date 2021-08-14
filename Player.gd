@@ -6,17 +6,11 @@ export var player_acceleration:int = 500
 export var turn_speed:float = 0.05
 
 export var fire_rate: int = 15
-export var projectile_speed:int = 600
+export var projectile_speed:int = 800
 
 var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
 
-
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	var horizontal_acceleration = 0
 	var vertical_acceleration = 0
