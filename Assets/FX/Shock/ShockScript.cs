@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ShockScript
 {
-	private const int SHOCKCOUNT = 8;
+	private const int SHOCKCOUNT = 16;
 
 	public Vector2 position;
 	public float radialSpeed;

@@ -14,6 +14,14 @@ uniform vec4 shock4;
 uniform vec4 shock5;
 uniform vec4 shock6;
 uniform vec4 shock7;
+uniform vec4 shock8;
+uniform vec4 shock9;
+uniform vec4 shock10;
+uniform vec4 shock11;
+uniform vec4 shock12;
+uniform vec4 shock13;
+uniform vec4 shock14;
+uniform vec4 shock15;
 
 float smoothCurve(float x) { // [lin 0,1]
 	return (1.0 + cos(((x * TAU) + PI))) / 2.0;
@@ -57,6 +65,14 @@ void fragment() {
 	calShockFX(screenXY, shock5, uvOffset, amp);
 	calShockFX(screenXY, shock6, uvOffset, amp);
 	calShockFX(screenXY, shock7, uvOffset, amp);
+	calShockFX(screenXY, shock8, uvOffset, amp);
+	calShockFX(screenXY, shock9, uvOffset, amp);
+	calShockFX(screenXY, shock10, uvOffset, amp);
+	calShockFX(screenXY, shock11, uvOffset, amp);
+	calShockFX(screenXY, shock12, uvOffset, amp);
+	calShockFX(screenXY, shock13, uvOffset, amp);
+	calShockFX(screenXY, shock14, uvOffset, amp);
+	calShockFX(screenXY, shock15, uvOffset, amp);
 	
 	vec3 screenColor = textureLod(SCREEN_TEXTURE, SCREEN_UV + uvOffset, 0.0).xyz;
 	//float t = (1.0 + cos(TIME * PI)) / 2.0; // [0,1]
