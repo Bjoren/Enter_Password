@@ -1,9 +1,16 @@
 extends KinematicBody2D
 
+var projectile = preload("res://Projectile.tscn")
+
 export var player_acceleration:int = 500
 export var turn_speed:float = 0.05
 
+export var fire_rate: int = 15
+export var projectile_speed:int = 600
+
+var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
+
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -14,6 +21,9 @@ func _physics_process(_delta):
 	var horizontal_acceleration = 0
 	var vertical_acceleration = 0
 	
+	if fire_cooldown > 0:
+		fire_cooldown -= 1
+	
 	if Input.is_action_pressed("ui_left"):
 		horizontal_acceleration -= player_acceleration
 	if Input.is_action_pressed("ui_right"):
@@ -22,8 +32,20 @@ func _physics_process(_delta):
 		vertical_acceleration -= player_acceleration
 	if Input.is_action_pressed("ui_down"):
 		vertical_acceleration += player_acceleration
-	
+		
 	move(horizontal_acceleration, vertical_acceleration)
+	
+	if Input.is_action_pressed("fire") && fire_cooldown == 0:
+		fire()
+		fire_cooldown = fire_rate
+
+func fire():
+	var projectile_instance = projectile.instance()
+	
+	projectile_instance.position = global_position
+	projectile_instance.set_velocity(Vector2(projectile_speed, 0).rotated(global_rotation))
+	
+	get_tree().get_root().add_child(projectile_instance)
 
 func move(horizontal_acceleration, vertical_acceleration):
 	velocity = lerp(velocity, Vector2(horizontal_acceleration, vertical_acceleration), turn_speed)
