@@ -3,9 +3,6 @@ using System;
 
 public class HangmanInput : Godot.Label
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
 	private string [] password_alternatives = {"HEMLIGT", "BLUNDER", "SAJDKICK"};
 	private string password = "hemligt";
 	private const char mask = '*';
@@ -18,6 +15,7 @@ public class HangmanInput : Godot.Label
 		for (int i = 0; i < password.Length; ++i) {
 			guess[i] = mask;
 		}
+		SetGuessText();
 	}
 
 	public bool GuessOneChar(char g) {
@@ -29,6 +27,7 @@ public class HangmanInput : Godot.Label
 				}
 			}
 			isPlace = true;
+			SetGuessText();
 		}
 		//GD.Print(new String(guess));
 		//GD.Print(password + "");
@@ -52,11 +51,5 @@ public class HangmanInput : Godot.Label
 				GuessOneChar((char)keyEvent.Scancode);
 			}
 		}
-		SetGuessText();
 	}
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }
