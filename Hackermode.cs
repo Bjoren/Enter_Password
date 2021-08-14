@@ -7,7 +7,7 @@ public class Hackermode : Node2D
 	// private int a = 2;
 	// private string b = "text";
 
-	public float cooldown = 1.0f;
+	public float cooldown = 10.0f;
 	Node globals;
 
 	private bool start_hack = false;
@@ -23,6 +23,7 @@ public class Hackermode : Node2D
 		scale1_timer = scale1_rst;
 		scale2_timer = scale2_rst;
 		this.Scale = new Vector2(1,1);
+		cooldown = 10.0f;
 	}
 
 	private void animate_enter_hackermode(float delta)
@@ -63,6 +64,16 @@ public class Hackermode : Node2D
 			{
 				if (cooldown < 0.0f) {
 					start_hack = true;
+					GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+				}
+				else {
+					if ((bool)globals.Get("in_hacker_mode") == false) {
+						GetNode<Label>("../Hangman/GuessCooldown").Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
+					}
+					else
+					{
+						GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+					}
 				}
 			}
 		}
