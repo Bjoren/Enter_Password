@@ -82,6 +82,9 @@ public class HangmanLogic : Node
 			SetGreyChar(guessChar);
 			nrCorrectGuesses++;
 			isPlace = nrCorrectGuesses == password.Length;
+			this.GetNode<AudioStreamPlayer2D>("../SfxCorrect").Play();
+		} else {
+			this.GetNode<AudioStreamPlayer2D>("../SfxIncorrect").Play();
 		}
 
 		SetHintText();

@@ -20,6 +20,7 @@ public class HangmanInput : Node
 			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91)
 			{
 				hangmanLogic.GuessOneChar((char)keyEvent.Scancode);
+				this.GetNode<AudioStreamPlayer2D>("../SfxType").Play();
 			}
 		}
 	}
