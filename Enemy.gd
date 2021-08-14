@@ -39,6 +39,7 @@ func hurt():
 	$CollisionShape2D.disabled = true
 	$Sprite.visible = false
 	$Explosion.emitting = true
+	Globals.fx_manager.InstantiateShock(self.position, 300, 200, 0.01)
 	yield(get_tree().create_timer(2),"timeout")
 	queue_free()
 

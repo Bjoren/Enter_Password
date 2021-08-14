@@ -5,21 +5,24 @@ using System.Collections.Generic;
 
 public class ShockScript
 {
-	private const int SHOCKCOUNT = 8; 
+	private const int SHOCKCOUNT = 8;
 
-	private static List<ShockInstance> Instances { get; } = new List<ShockInstance>();
+	public Vector2 position;
+	public float radialSpeed;
+	public float targetRadius;
+	public float targetAmpliture;
 
-	public static void Instantiate(Vector2 position, float radialSpeed = 600f, float targetRadius = 200f, float targetAmpliture = 0.1f)
+	public float time = 0f;
+	public float currentRadius = 0f;
+	public float currentAmpliture = 0f;
+
+	private static List<ShockScript> Instances { get; } = new List<ShockScript>();
+
+	public static void Instantiate(ShockScript instance)
 	{
 		if (Instances.Count < SHOCKCOUNT)
 		{
-			Instances.Add(new ShockInstance()
-			{
-				position = position,
-				radialSpeed = radialSpeed,
-				targetRadius = targetRadius,
-				targetAmpliture = targetAmpliture,
-			});
+			Instances.Add(instance);
 		}
 	}
 
@@ -46,21 +49,9 @@ public class ShockScript
 			x.time += delta;
 			x.currentRadius = x.radialSpeed * x.time;
 			float val = x.currentRadius / x.targetRadius;
-			x.currentAmpliture = (1f - (val * val)) * x.targetAmpliture;// x.currentRadius / x.targetRadius;
+			x.currentAmpliture = (1f - (val * val)) * x.targetAmpliture;
 		});
 
 		Instances.SelectRemove(x => x.currentRadius > x.targetRadius);
-	}
-
-	public class ShockInstance
-	{
-		public Vector2 position;
-		public float radialSpeed;
-		public float targetRadius;
-		public float targetAmpliture;
-
-		public float time = 0f;
-		public float currentRadius = 0f;
-		public float currentAmpliture = 0f;
 	}
 }
