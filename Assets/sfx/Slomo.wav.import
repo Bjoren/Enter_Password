@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Slomo.wav-18cc29885e58f8cc1772bdd6509c235d.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/Slomo.wav"
+dest_files=[ "res://.import/Slomo.wav-18cc29885e58f8cc1772bdd6509c235d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
