@@ -211,7 +211,7 @@ public class HangmanLogic : Node
 
 	public void LevelCompleted()
 	{
-		FXManagerScript.Instance.DoScreenShake(0.5f, 0.1f);
+		FXManagerScript.Instance.DoScreenShake(0.5f, 0.05f);
 
 		this.GetNode("../../TwinStick").Call("kill_enemies");
 		this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
