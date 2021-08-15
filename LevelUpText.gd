@@ -8,8 +8,12 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var current_level = Globals.get_current_level() + 1
+	var current_level = Globals.get_current_level()
 	text = "LEVEL " + str(current_level)
+	print(current_level)
+	print(text)
 	$Particles2D.emitting = true
-	$Tween.interpolate_property(modulate, Color(255, 255, 255, 255), Color(255, 255, 255, 0), Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+
 	$Tween.connect("tween_all_completed", self, "queue_free")
