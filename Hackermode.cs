@@ -9,7 +9,7 @@ public class Hackermode : Node2D
 
 	public float cooldown = 10.0f;
 	private Label lab;
-	private float colcol = 1.0f;
+	private float colcol = 0.0f;
 	Node globals;
 
 	private bool start_hack = false;
@@ -27,6 +27,7 @@ public class Hackermode : Node2D
 		this.Position = new Vector2(0, 0);
 		this.Scale = new Vector2(1,1);
 		cooldown = 10.0f;
+		colcol = 0f;
 	}
 
 	private void animate_enter_hackermode(float delta)
@@ -74,12 +75,12 @@ public class Hackermode : Node2D
 				}
 				else {
 					if ((bool)globals.Get("in_hacker_mode") == false) {
-						lab.Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
-						colcol = 1.0f;
+						//lab.Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
+						colcol = 3.0f;
 					}
 					else
 					{
-						lab.Text = "";
+						//lab.Text = "";
 					}
 				}
 			}
@@ -93,5 +94,10 @@ public class Hackermode : Node2D
 		colcol -= delta;
 		if (colcol < 0.0f)
 			lab.Text = "";
+		else
+		{
+			int num = (int)(cooldown + 0.9f);
+			lab.Text = num > 0 ? "Hack cooldown: " + num.ToString() : "HACK IS READY!";
+		}
 	}
 }
