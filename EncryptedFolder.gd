@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var folder_damage_particles = preload("res://FolderDamage.tscn")
 
-var max_health = 100.0
+var max_health = 150.0
 var health = max_health
 
 func _ready():
