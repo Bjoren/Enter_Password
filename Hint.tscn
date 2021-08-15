@@ -30,7 +30,9 @@ angle_random = 1.0
 scale = 5.0
 color_ramp = SubResource( 4 )
 
-[node name="Hint" type="Area2D"]
+[node name="Hint" type="Area2D" groups=[
+"pickup",
+]]
 collision_layer = 16
 script = ExtResource( 1 )
 

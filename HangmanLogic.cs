@@ -23,12 +23,14 @@ public class HangmanLogic : Node
 		"RUN",
 		"CAR",
 		"BUS",
+		"DOG",
+		"GIT",
 		"FUN"
 	};
 
 	private string[] password_level2 = {
 		"PANIC",
-		"VEMOM",
+		"VENOM",
 		"GNOME",
 		"YACHT",
 		"NINJA",
@@ -39,6 +41,8 @@ public class HangmanLogic : Node
 		"HORDE",
 		"ONION",
 		"ARROW",
+		"CRIME",
+		"MEMES",
 		"WHALE"
 	};
 
@@ -61,7 +65,6 @@ public class HangmanLogic : Node
 	
 	private string password = "hemligt";
 	private int nrCorrectGuesses = 0;
-	private int level = 0;
 	private const char mask = '_';
 	private char[] guess = { };
 	private Random rng = new Random();
@@ -81,7 +84,7 @@ public class HangmanLogic : Node
 		hintChars.Clear();
 		greyHintChars.Clear();
 
-		LoadPassword(level);
+		LoadPassword((int)this.GetNode("/root/Globals").Call("get_current_level"));
 		LoadHintChars();
 		SetGuessText();
 		SetHintText();
@@ -218,7 +221,10 @@ public class HangmanLogic : Node
 		this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
 		this.GetNode("/root/Globals").Call("init");
 
-		level++;
+		int level = (int)this.GetNode("/root/Globals").Call("get_current_level");
+		this.GetNode("/root/Globals").Call("reset_current_difficulty");
+		this.GetNode("/root/Globals").Call("set_current_level", level + 1);
+		
 		Reset();
 	}
 }
