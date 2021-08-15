@@ -12,7 +12,7 @@ var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
 
 var is_alive:bool = true
-var second_wind:bool = false
+var second_wind_lvl:int = -1
 
 func _physics_process(_delta):
 	if is_alive:
@@ -62,9 +62,10 @@ func move(horizontal_acceleration, vertical_acceleration):
 func hurt():
 	if is_alive:
 		if !Globals.in_hacker_mode:
-			if second_wind == false:
+			var lvl = Globals.get_current_level()
+			if second_wind_lvl < lvl:
 				Globals.in_hacker_mode = true
-				second_wind = true
+				second_wind_lvl = lvl
 			else:
 				is_alive = false
 				$SfxMove.stop()
@@ -80,4 +81,5 @@ func hurt():
 				Globals.fx_manager.InstantiateShock(self.position, 300, 800, 0.1)
 				Globals.fx_manager.InstantiateShock(self.position, 150, 400, 0.1)
 				Globals.fx_manager.DoScreenShake(0.5, 0.02)
+				get_node("../../Hangman/HangmanLogic").RevealPassword()
 			

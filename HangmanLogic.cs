@@ -140,6 +140,12 @@ public class HangmanLogic : Node
 		SetHintText();
 	}
 
+	public void RevealPassword()
+	{
+		guess = password.ToArray();
+		SetGuessText();
+	}
+
 	public override void _Ready()
 	{
 		passwordTextNode = GetNode<Label>("../PasswordText");
