@@ -7,7 +7,7 @@ public class HackermodeCountdown : Label
 	// private int a = 2;
 	// private string b = "text";
 
-	private float countdown_rst = 5.0f;
+	private float countdown_rst = 7.0f;
 	private float countdown = 0.0f;
 	private bool reset = false;
 	Node globals;

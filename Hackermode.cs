@@ -13,9 +13,9 @@ public class Hackermode : Node2D
 	Node globals;
 
 	private bool start_hack = false;
-	private const float scale1_rst = 0.5f;
+	private const float scale1_rst = 0.04f;
 	private float scale1_timer = 0.0f;
-	private const float scale2_rst = 0.4f;
+	private const float scale2_rst = 0.03f;
 	private float scale2_timer = 0.0f;
 
 	public void reset_animate_enter_hackermode() {
@@ -34,7 +34,12 @@ public class Hackermode : Node2D
 	{
 		if (!start_hack)
 			return;
+		if (Engine.TimeScale > 0.9f) {
+			Engine.TimeScale = 0.1f;
+			delta *= 0.1f;
+		}
 		scale1_timer -= delta;
+		
 		float scale1_frac = Math.Max((scale1_timer / scale1_rst), 0.0f);
 		this.Scale = new Vector2(scale1_frac, scale1_frac);
 
@@ -47,7 +52,7 @@ public class Hackermode : Node2D
 			this.Position = new Vector2(-GetViewportRect().Size.x, GetViewportRect().Size.y / 2 - 50.0f);
 			/* this.Position = new Vector2(-GetViewportRect().Size.x*scale2_frac, GetViewportRect().Size.y / 2 - 50.0f); */
 			if (scale2_timer < 0.0f) {
-				Engine.TimeScale = 0.1f;
+				
 			}
 		}
 	}
@@ -97,7 +102,7 @@ public class Hackermode : Node2D
 		else
 		{
 			int num = (int)(cooldown + 0.9f);
-			lab.Text = num > 0 ? "Hack cooldown: " + num.ToString() : "HACK IS READY!";
+			lab.Text = num > 0 ? "Hack on cooldown: " + num.ToString() : "HACK IS READY!";
 		}
 	}
 }
