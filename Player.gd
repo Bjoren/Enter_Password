@@ -12,6 +12,7 @@ var fire_cooldown:int = 0
 var velocity:= Vector2.ZERO
 
 var is_alive:bool = true
+var second_wind:bool = false
 
 func _physics_process(_delta):
 	if is_alive:
@@ -60,17 +61,23 @@ func move(horizontal_acceleration, vertical_acceleration):
 
 func hurt():
 	if is_alive:
-		is_alive = false
-		$SfxMove.stop()
-		$SfxDead.play()
-		$Hurtbox.disabled = true
-		$PlayerSprite.visible = false
-		$Light2D.visible = false
-		$Ones.emitting = false
-		$Zeroes.emitting = false
-		$Explosion.emitting = true
-		Globals.set_player_is_alive(false)
-		Globals.fx_manager.InstantiateShock(self.position, 600, 1600, 0.1)
-		Globals.fx_manager.InstantiateShock(self.position, 300, 800, 0.1)
-		Globals.fx_manager.InstantiateShock(self.position, 150, 400, 0.1)
-		Globals.fx_manager.DoScreenShake(0.5, 0.02)
+		if !Globals.in_hacker_mode:
+			if second_wind == false:
+				Globals.in_hacker_mode = true
+				second_wind = true
+			else:
+				is_alive = false
+				$SfxMove.stop()
+				$SfxDead.play()
+				$Hurtbox.disabled = true
+				$PlayerSprite.visible = false
+				$Light2D.visible = false
+				$Ones.emitting = false
+				$Zeroes.emitting = false
+				$Explosion.emitting = true
+				Globals.set_player_is_alive(false)
+				Globals.fx_manager.InstantiateShock(self.position, 600, 1600, 0.1)
+				Globals.fx_manager.InstantiateShock(self.position, 300, 800, 0.1)
+				Globals.fx_manager.InstantiateShock(self.position, 150, 400, 0.1)
+				Globals.fx_manager.DoScreenShake(0.5, 0.02)
+			

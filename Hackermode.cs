@@ -12,14 +12,12 @@ public class Hackermode : Node2D
 	private float colcol = 0.0f;
 	Node globals;
 
-	private bool start_hack = false;
 	private const float scale1_rst = 0.04f;
 	private float scale1_timer = 0.0f;
 	private const float scale2_rst = 0.03f;
 	private float scale2_timer = 0.0f;
 
 	public void reset_animate_enter_hackermode() {
-		start_hack = false;
 		Engine.TimeScale = 1.0f;
 		globals.Set("in_hacker_mode", false);
 		scale1_timer = scale1_rst;
@@ -32,7 +30,7 @@ public class Hackermode : Node2D
 
 	private void animate_enter_hackermode(float delta)
 	{
-		if (!start_hack)
+		if ((bool)globals.Get("in_hacker_mode") == false)
 			return;
 		if (Engine.TimeScale > 0.9f) {
 			Engine.TimeScale = 0.1f;
@@ -73,8 +71,6 @@ public class Hackermode : Node2D
 			if ((KeyList)keyEvent.Scancode == KeyList.Enter && isPlayerAlive)
 			{
 				if (cooldown < 0.0f) {
-					start_hack = true;
-					
 					globals.Set("in_hacker_mode", true);
 					lab.Text = "";
 				}
