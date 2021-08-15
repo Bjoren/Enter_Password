@@ -8,6 +8,8 @@ public class Hackermode : Node2D
 	// private string b = "text";
 
 	public float cooldown = 10.0f;
+	private Label lab;
+	private float colcol = 1.0f;
 	Node globals;
 
 	private bool start_hack = false;
@@ -54,6 +56,7 @@ public class Hackermode : Node2D
 	{
 		globals = GetNode("/root/Globals");
 		reset_animate_enter_hackermode();
+		lab= GetNode<Label>("../Hangman/GuessCooldown");
 	}
 
 	public override void _Input(InputEvent inputEvent)
@@ -67,15 +70,16 @@ public class Hackermode : Node2D
 					start_hack = true;
 					
 					globals.Set("in_hacker_mode", true);
-					GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+					lab.Text = "";
 				}
 				else {
 					if ((bool)globals.Get("in_hacker_mode") == false) {
-						GetNode<Label>("../Hangman/GuessCooldown").Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
+						lab.Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
+						colcol = 1.0f;
 					}
 					else
 					{
-						GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+						lab.Text = "";
 					}
 				}
 			}
@@ -86,5 +90,8 @@ public class Hackermode : Node2D
 	{
 		cooldown -= delta;
 		animate_enter_hackermode(delta);
+		colcol -= delta;
+		if (colcol < 0.0f)
+			lab.Text = "";
 	}
 }
