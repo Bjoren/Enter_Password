@@ -161,7 +161,7 @@ public class HangmanLogic : Node
 			isPlace = nrCorrectGuesses == password.Length;
 			this.GetNode<AudioStreamPlayer2D>("../SfxCorrect").Play();
 		}
-		else
+		else if (!IsAlreadyGuessed(guessChar))
 		{
 			this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
 			this.GetNode<AudioStreamPlayer2D>("../SfxIncorrect").Play();
@@ -175,6 +175,11 @@ public class HangmanLogic : Node
 		SetHintText();
 		SetGuessText();
 		return isPlace;
+	}
+
+	private bool IsAlreadyGuessed(char guessChar)
+	{
+		return new List<char>(guess).GetRange(0, nrCorrectGuesses).Contains(guessChar);
 	}
 
 	public bool HasGuessingLeft()
@@ -200,7 +205,7 @@ public class HangmanLogic : Node
 		{
 			nrReceivedHints++;
 			SetHintText();
-		} else 
+		} else if (nrCorrectGuesses < password.Length)
 		{
 			GuessOneChar(password[nrCorrectGuesses]);
 		}
