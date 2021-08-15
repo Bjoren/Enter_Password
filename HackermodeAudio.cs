@@ -19,9 +19,11 @@ public class HackermodeAudio : AudioStreamPlayer2D
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		if (current != (bool)globals.Get("in_hacker_mode")) {
+		bool hackermode =  (bool)globals.Get("in_hacker_mode");
+		if (current != hackermode) {
 			current = !current;
-			this.Play();
+			if (hackermode)
+				this.Play();
 		}
 	}
 }
