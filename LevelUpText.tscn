@@ -4,19 +4,19 @@
 [ext_resource path="res://LevelUpText.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 350
+size = 200
 outline_size = 12
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=2]
 max_value = 4.0
 _data = [ Vector2( 0, 1.33182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.90496, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=4]
 emission_shape = 2
 emission_box_extents = Vector3( 700, 150, 1 )
 flag_disable_z = true
@@ -26,7 +26,7 @@ initial_velocity = 1000.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 12.63
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 3 )
 color = Color( 0, 1, 0, 1 )
 
 [node name="LevelUpText" type="Label"]
@@ -51,4 +51,4 @@ amount = 200
 lifetime = 2.0
 explosiveness = 1.0
 randomness = 0.66
-process_material = SubResource( 2 )
+process_material = SubResource( 4 )

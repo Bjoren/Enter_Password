@@ -23,7 +23,7 @@ func _physics_process(_delta):
 			waves += 1
 			if waves % 2 == 0 && Globals.get_current_level() < 3:
 				spawn_hint()
-			if waves % 8 == 0:
+			if waves % 5 == 0:
 				Globals.increase_current_difficulty()
 			
 			$Spawn_timer.start()
