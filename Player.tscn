@@ -92,7 +92,6 @@ process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 
 [node name="Explosion" type="Particles2D" parent="."]
-visible = false
 emitting = false
 amount = 1200
 lifetime = 10.0

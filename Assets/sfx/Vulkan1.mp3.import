@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Vulkan1.mp3-6e353fbcc97e4a1ef2a9c0e3d42fb848.mp3str"
+
+[deps]
+
+source_file="res://Assets/sfx/Vulkan1.mp3"
+dest_files=[ "res://.import/Vulkan1.mp3-6e353fbcc97e4a1ef2a9c0e3d42fb848.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
