@@ -221,7 +221,7 @@ public class HangmanLogic : Node
 		this.GetNode("/root/Globals").Call("init");
 
 		int level = (int)this.GetNode("/root/Globals").Call("get_current_level");
-		int level = (int)this.GetNode("/root/Globals").Call("reset_current_difficulty");
+		this.GetNode("/root/Globals").Call("reset_current_difficulty");
 		this.GetNode("/root/Globals").Call("set_current_level", level + 1);
 		
 		Reset();
