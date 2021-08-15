@@ -84,6 +84,7 @@ public class HangmanLogic : Node
 		LoadPassword(level);
 		LoadHintChars();
 		SetGuessText();
+		SetHintText();
 	}
 
 	public override void _Ready()
@@ -195,6 +196,14 @@ public class HangmanLogic : Node
 		{
 			nrReceivedHints++;
 			SetHintText();
+		} else 
+		{
+			GuessOneChar(password[nrCorrectGuesses]);
+		}
+
+		if (nrCorrectGuesses == password.Length)
+		{
+			LevelCompleted();
 		}
 		
 		return flace;
@@ -209,9 +218,6 @@ public class HangmanLogic : Node
 		this.GetNode("/root/Globals").Call("init");
 
 		level++;
-		if (level < 3)
-		{
-			Reset();
-		}
+		Reset();
 	}
 }

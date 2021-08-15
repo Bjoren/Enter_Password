@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Slomo-bak1.wav-3c5c3279924e9cd23224ca058fc3d13e.sample"
+
+[deps]
+
+source_file="res://Assets/sfx/Slomo-bak1.wav"
+dest_files=[ "res://.import/Slomo-bak1.wav-3c5c3279924e9cd23224ca058fc3d13e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
