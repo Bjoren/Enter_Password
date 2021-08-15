@@ -160,6 +160,7 @@ public class HangmanLogic : Node
 		}
 		else
 		{
+			this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
 			this.GetNode<AudioStreamPlayer2D>("../SfxIncorrect").Play();
 		}
 		
