@@ -63,7 +63,7 @@ func hurt():
 	if is_alive:
 		if !Globals.in_hacker_mode:
 			var lvl = Globals.get_current_level()
-			if second_wind_lvl < lvl:
+			if lvl < 3 && second_wind_lvl < lvl:
 				Globals.in_hacker_mode = true
 				second_wind_lvl = lvl
 			else:

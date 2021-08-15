@@ -30,6 +30,14 @@ public class Hackermode : Node2D
 		if (!reset_hackermode)
 			return;
 
+		var player = GetNode("../TwinStick/Player");
+		var second_wind_lvl = (int)player.Get("second_wind_lvl");
+		var current_level = (int)globals.Call("get_current_level");
+		if (second_wind_lvl == current_level)
+		{
+			player.Call("hurt");
+		}
+
 		globals.Set("in_hacker_mode", false);
 		float true_delta = delta / Engine.TimeScale;
 		hck_timer -= true_delta;
