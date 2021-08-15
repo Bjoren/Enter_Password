@@ -2,6 +2,7 @@ extends Node2D
 
 var enemy = preload("res://Enemy.tscn")
 var hint = preload("res://Hint.tscn")
+var folder = preload("res://EncryptedFolder.tscn")
 
 var enemy_base_number = 1
 var enemy_difficulty_multiplier = 1
@@ -9,6 +10,7 @@ var enemy_difficulty_multiplier = 1
 var waves = 0
 
 var arena_center = Vector2(960, 540)
+var boss_spawned:bool = false
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():
@@ -19,14 +21,19 @@ func _physics_process(_delta):
 		if $Spawn_timer.is_stopped():
 			spawn_enemies()
 			waves += 1
-			if waves % 3 == 0:
+			if waves % 2 == 0 && Globals.get_current_level() < 2:
 				spawn_hint()
-			if waves % 6 == 0:
+			if waves % 4 == 0:
 				Globals.increase_current_difficulty()
 			
 			$Spawn_timer.start()
 	else:
 		kill_enemies()
+		
+	if Globals.get_current_level() > 2 && !boss_spawned:
+		var folder_instance = folder.instance()
+		self.add_child(folder_instance)
+		boss_spawned = true
 		
 func spawn_enemies():
 	var difficulty = Globals.get_current_difficulty()
@@ -41,6 +48,8 @@ func spawn_enemies():
 func kill_enemies():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.hurt()
+	for pickup in get_tree().get_nodes_in_group("pickup"):
+		pickup.queue_free()
 
 func spawn_hint():
 	var random_position = Vector2(rand_range(60, 1860), rand_range(160, 1020))

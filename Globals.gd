@@ -5,6 +5,7 @@ var current_difficulty:int = 1
 var player_is_alive = true
 var fx_manager:Node = null
 var in_hacker_mode = false
+var current_level:int = 0
 
 func _init():
 	player_position = Vector2.ZERO
@@ -12,6 +13,13 @@ func _init():
 	player_is_alive = true
 	fx_manager = null
 	in_hacker_mode = false
+	current_level = 0
+	
+func get_current_level() -> int:
+	return current_level
+	
+func set_current_level(level:int):
+	current_level = level
 
 func get_player_position() -> Vector2:
 	return player_position
