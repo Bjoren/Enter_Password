@@ -1,20 +1,21 @@
 using Godot;
 using System;
 
-public class Hackermode : Node2D
+public class Hangman : Node2D
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
 
-	public float cooldown = 10.0f;
+	public float cooldown = 1.0f;
 	Node globals;
 
 	private bool start_hack = false;
-	private const float scale1_rst = 0.5f;
+	private const float scale1_rst = 0.2f;
 	private float scale1_timer = 0.0f;
-	private const float scale2_rst = 0.4f;
+	private const float scale2_rst = 0.1f;
 	private float scale2_timer = 0.0f;
+	AudioStreamPlayer2D asp2d;
 
 	public void reset_animate_enter_hackermode() {
 		start_hack = false;
@@ -22,15 +23,16 @@ public class Hackermode : Node2D
 		globals.Set("in_hacker_mode", false);
 		scale1_timer = scale1_rst;
 		scale2_timer = scale2_rst;
-		this.Position = new Vector2(0, 0);
 		this.Scale = new Vector2(1,1);
-		cooldown = 10.0f;
+		cooldown = 1.0f;
 	}
 
 	private void animate_enter_hackermode(float delta)
 	{
 		if (!start_hack)
 			return;
+		
+		
 		scale1_timer -= delta;
 		float scale1_frac = Math.Max((scale1_timer / scale1_rst), 0.0f);
 		this.Scale = new Vector2(scale1_frac, scale1_frac);
@@ -44,7 +46,8 @@ public class Hackermode : Node2D
 			this.Position = new Vector2(-GetViewportRect().Size.x, GetViewportRect().Size.y / 2 - 50.0f);
 			/* this.Position = new Vector2(-GetViewportRect().Size.x*scale2_frac, GetViewportRect().Size.y / 2 - 50.0f); */
 			if (scale2_timer < 0.0f) {
-				Engine.TimeScale = 0.1f;
+				globals.Set("in_hacker_mode", true);
+				//Engine.TimeScale = 0.1f;
 			}
 		}
 	}
@@ -53,6 +56,9 @@ public class Hackermode : Node2D
 	public override void _Ready()
 	{
 		globals = GetNode("/root/Globals");
+		asp2d = this.GetNode<AudioStreamPlayer2D>("SfxEnterHackermode");
+		asp2d.Play();
+		
 		reset_animate_enter_hackermode();
 	}
 
@@ -60,22 +66,27 @@ public class Hackermode : Node2D
 	{
 		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			bool isPlayerAlive = (bool)globals.Call("get_player_is_alive");
-			if ((KeyList)keyEvent.Scancode == KeyList.Enter && isPlayerAlive)
+			if ((KeyList)keyEvent.Scancode == KeyList.Enter)
 			{
 				if (cooldown < 0.0f) {
+					
+					if (!start_hack) {
+						asp2d = this.GetNode<AudioStreamPlayer2D>("SfxEnterHackermode");
+						asp2d.Play();
+						GD.Print("WALLA");
+					}
+					GD.Print("ASDFASDF");
 					start_hack = true;
 					
-					globals.Set("in_hacker_mode", true);
-					GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+					GetNode<Label>("GuessCooldown").Text = "";
 				}
 				else {
 					if ((bool)globals.Get("in_hacker_mode") == false) {
-						GetNode<Label>("../Hangman/GuessCooldown").Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
+						GetNode<Label>("GuessCooldown").Text = "Hack cooldown: " + ((int)(cooldown + 0.9f)).ToString();
 					}
 					else
 					{
-						GetNode<Label>("../Hangman/GuessCooldown").Text = "";
+						GetNode<Label>("GuessCooldown").Text = "";
 					}
 				}
 			}

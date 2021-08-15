@@ -8,6 +8,10 @@ public class FXManagerScript : Node
 	public Sprite ScreenQuad { get; private set; }
 	public ShaderMaterial ScreenMaterial { get; private set; }
 
+	private Random rng = new Random();
+	private float screenShakeTime = 0f;
+	private float screenShakeAmp = 1f;
+
 	public override void _Ready()
 	{
 		base._Ready();
@@ -32,6 +36,12 @@ public class FXManagerScript : Node
 		});
 	}
 
+	public void DoScreenShake(float screenShakeTime, float screenShakeAmp)
+	{
+		this.screenShakeTime = screenShakeTime;
+		this.screenShakeAmp = screenShakeAmp;
+	}
+
 	/*
 	public override void _Input(InputEvent @event)
 	{
@@ -39,7 +49,8 @@ public class FXManagerScript : Node
 
 		if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.IsPressed())
 		{
-			InstantiateShock(eventMouseButton.Position, 600f, 200f, 0.1f);
+			//InstantiateShock(eventMouseButton.Position, 600f, 200f, 0.1f);
+			//DoScreenShake(0.25f, 0.005f);
 		}
 	}
 	*/
@@ -49,5 +60,19 @@ public class FXManagerScript : Node
 		base._Process(delta);
 
 		ShockScript.Update(delta);
+
+		UpdateScreenShake(delta);
+	}
+
+	private void UpdateScreenShake(float delta)
+	{
+		if (screenShakeTime > 0f)
+		{
+			Vector2 screenShakeUVOffset = new Vector2(rng.Next(-100, 100) / 100f, rng.Next(-100, 100) / 100f);
+			float falloff = Mathf.Clamp(screenShakeTime / 0.15f, 0f, 1f);
+			this.ScreenMaterial.SetShaderParam("screenShakeUVOffset", screenShakeUVOffset * screenShakeAmp * falloff);
+
+			screenShakeTime -= delta;
+		}
 	}
 }

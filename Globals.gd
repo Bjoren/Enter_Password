@@ -6,6 +6,7 @@ var player_is_alive = true
 var fx_manager:Node = null
 var in_hacker_mode = false
 var current_level:int = 0
+var play_hackerman:bool = false
 
 func _init():
 	player_position = Vector2.ZERO
@@ -44,3 +45,6 @@ func get_player_is_alive() -> bool:
 
 func is_in_hacker_mode () -> bool:
 	return in_hacker_mode
+
+func play_hackermode_sound () -> bool:
+	return play_hackerman
