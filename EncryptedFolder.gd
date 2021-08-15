@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var folder_damage_particles = preload("res://FolderDamage.tscn")
+
 var max_health = 100.0
 var health = max_health
 
@@ -20,6 +22,12 @@ func hurt():
 	
 	if health == 0:
 		win()
+	
+	var damage_particle = folder_damage_particles.instance()
+	add_child(damage_particle)
+	damage_particle.emitting = true
+	yield(get_tree().create_timer(3), "timeout")
+	damage_particle.queue_free()
 		
 func win():
 	var tween = Tween.new()
