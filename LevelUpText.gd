@@ -10,8 +10,6 @@ extends Label
 func _ready():
 	var current_level = Globals.get_current_level()
 	text = "LEVEL " + str(current_level)
-	print(current_level)
-	print(text)
 	$Particles2D.emitting = true
 	$Tween.interpolate_property(self, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
