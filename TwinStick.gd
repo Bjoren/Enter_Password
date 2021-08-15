@@ -23,7 +23,7 @@ func _physics_process(_delta):
 			waves += 1
 			if waves % 2 == 0 && Globals.get_current_level() < 3:
 				spawn_hint()
-			if waves % 6 == 0:
+			if waves % 8 == 0:
 				Globals.increase_current_difficulty()
 			
 			$Spawn_timer.start()
@@ -33,7 +33,6 @@ func _physics_process(_delta):
 	if Globals.get_current_level() > 2 && !boss_spawned:
 		var folder_instance = folder.instance()
 		self.add_child(folder_instance)
-		Globals.increase_current_difficulty()
 		boss_spawned = true
 		
 func spawn_enemies():
