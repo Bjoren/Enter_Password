@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/FX/FXManager.tscn" type="PackedScene" id=8]
 [ext_resource path="res://HackermodeAudio.cs" type="Script" id=9]
 [ext_resource path="res://Assets/FX/Background/BackgroundMaterial.tres" type="Material" id=10]
-[ext_resource path="res://Assets/sfx/Slomo.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/sfx/Slomo2.wav" type="AudioStream" id=11]
 
 [node name="MainScene" type="Node2D"]
 
