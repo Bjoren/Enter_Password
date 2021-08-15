@@ -15,10 +15,10 @@ public class HangmanInput : Node
 	{
 		if (inputEvent is InputEventKey keyEvent && keyEvent.Pressed)
 		{
-			if (keyEvent.Scancode == 32)
-			{
-				hangmanLogic.GiveHintChar();
-			}
+			//if (keyEvent.Scancode == (int)KeyList.Space)
+			//{
+			//	hangmanLogic.GiveHintChar();
+			//}
 			if (keyEvent.Scancode > 64 && keyEvent.Scancode < 91 && (bool)globals.Get("in_hacker_mode"))
 			{
 				hangmanLogic.GuessOneChar((char)keyEvent.Scancode);
