@@ -191,9 +191,10 @@ public class HangmanLogic : Node
 	{
 		for(int i = 0; i < hintChars.Count; i++)
 		{
-			if(hintChars[i] == c)
+			if(hintChars[i] == c && greyHintChars[i] != c)
 			{
 				greyHintChars[i] = c;
+				i = hintChars.Count;
 			}
 		}
 	}

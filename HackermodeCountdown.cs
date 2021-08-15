@@ -7,7 +7,7 @@ public class HackermodeCountdown : Label
 	// private int a = 2;
 	// private string b = "text";
 
-	private float countdown_rst = 5.0f;
+	private float countdown_rst = 7.0f;
 	private float countdown = 0.0f;
 	private bool reset = false;
 	Node globals;
@@ -35,8 +35,7 @@ public class HackermodeCountdown : Label
 				GetNode<Hackermode>("../../Hangman").reset_animate_enter_hackermode();
 				reset = false;
 			}
-			if (isHackerMode)
-				countdown = countdown_rst;
+			countdown = countdown_rst;
 		}
 	}
 }

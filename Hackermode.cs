@@ -12,14 +12,12 @@ public class Hackermode : Node2D
 	private float colcol = 0.0f;
 	Node globals;
 
-	private bool start_hack = false;
-	private const float scale1_rst = 0.5f;
+	private const float scale1_rst = 0.04f;
 	private float scale1_timer = 0.0f;
-	private const float scale2_rst = 0.4f;
+	private const float scale2_rst = 0.03f;
 	private float scale2_timer = 0.0f;
 
 	public void reset_animate_enter_hackermode() {
-		start_hack = false;
 		Engine.TimeScale = 1.0f;
 		globals.Set("in_hacker_mode", false);
 		scale1_timer = scale1_rst;
@@ -32,9 +30,14 @@ public class Hackermode : Node2D
 
 	private void animate_enter_hackermode(float delta)
 	{
-		if (!start_hack)
+		if ((bool)globals.Get("in_hacker_mode") == false)
 			return;
+		if (Engine.TimeScale > 0.9f) {
+			Engine.TimeScale = 0.1f;
+			delta *= 0.1f;
+		}
 		scale1_timer -= delta;
+		
 		float scale1_frac = Math.Max((scale1_timer / scale1_rst), 0.0f);
 		this.Scale = new Vector2(scale1_frac, scale1_frac);
 
@@ -47,7 +50,7 @@ public class Hackermode : Node2D
 			this.Position = new Vector2(-GetViewportRect().Size.x, GetViewportRect().Size.y / 2 - 50.0f);
 			/* this.Position = new Vector2(-GetViewportRect().Size.x*scale2_frac, GetViewportRect().Size.y / 2 - 50.0f); */
 			if (scale2_timer < 0.0f) {
-				Engine.TimeScale = 0.1f;
+				
 			}
 		}
 	}
@@ -68,8 +71,6 @@ public class Hackermode : Node2D
 			if ((KeyList)keyEvent.Scancode == KeyList.Enter && isPlayerAlive)
 			{
 				if (cooldown < 0.0f) {
-					start_hack = true;
-					
 					globals.Set("in_hacker_mode", true);
 					lab.Text = "";
 				}
@@ -97,7 +98,7 @@ public class Hackermode : Node2D
 		else
 		{
 			int num = (int)(cooldown + 0.9f);
-			lab.Text = num > 0 ? "Hack cooldown: " + num.ToString() : "HACK IS READY!";
+			lab.Text = num > 0 ? "Hack on cooldown: " + num.ToString() : "HACK IS READY!";
 		}
 	}
 }
