@@ -75,3 +75,4 @@ func hurt():
 		Globals.fx_manager.InstantiateShock(self.position, 600, 1600, 0.1)
 		Globals.fx_manager.InstantiateShock(self.position, 300, 800, 0.1)
 		Globals.fx_manager.InstantiateShock(self.position, 150, 400, 0.1)
+		Globals.fx_manager.DoScreenShake(0.5, 0.02)

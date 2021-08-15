@@ -4,7 +4,7 @@ const float PI = 3.14159265358979323846;
 const float TAU = PI * 2.0;
 
 uniform vec2 SCREENSIZE = vec2(1920.0, 1080.0);
-uniform vec3 testColor = vec3(0.0, 1.0, 0.0);
+uniform vec2 screenShakeUVOffset = vec2(0.0, 0.0);
 
 uniform vec4 shock0;
 uniform vec4 shock1;
@@ -74,7 +74,8 @@ void fragment() {
 	calShockFX(screenXY, shock14, uvOffset, amp);
 	calShockFX(screenXY, shock15, uvOffset, amp);
 	
-	vec3 screenColor = textureLod(SCREEN_TEXTURE, SCREEN_UV + uvOffset, 0.0).xyz;
+	vec2 screenUV = SCREEN_UV + screenShakeUVOffset;
+	vec3 screenColor = textureLod(SCREEN_TEXTURE, screenUV + uvOffset, 0.0).xyz;
 	//float t = (1.0 + cos(TIME * PI)) / 2.0; // [0,1]
 	//vec3 finalColor = mix(screenColor, vec3(1.0), vec3(shockAmp));
     //COLOR = vec4(finalColor, 1.0);

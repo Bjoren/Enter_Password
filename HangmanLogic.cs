@@ -146,6 +146,8 @@ public class HangmanLogic : Node
 
 	public bool GuessOneChar(char guessChar)
 	{
+		FXManagerScript.Instance.DoScreenShake(0.05f, 0.01f);
+
 		bool isPlace = false;
 		if (HasGuessingLeft() && password[nrCorrectGuesses] == guessChar)
 		{
@@ -200,6 +202,8 @@ public class HangmanLogic : Node
 
 	public void LevelCompleted()
 	{
+		FXManagerScript.Instance.DoScreenShake(0.5f, 0.1f);
+
 		this.GetNode("../../TwinStick").Call("kill_enemies");
 		this.GetNode("../../Hangman").Call("reset_animate_enter_hackermode");
 		this.GetNode("/root/Globals").Call("init");
