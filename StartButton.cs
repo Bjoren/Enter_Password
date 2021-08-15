@@ -16,6 +16,7 @@ public class StartButton : Godot.Button
 		Node globals = this.GetNode<Node>("/root/Globals");
 		globals.Call("set_player_is_alive", true);
 		menuNode.HasBeenAlive = true;
+		GetNode("/root/Globals").Call("set_current_level", 0);
 		this.Hide();
 		base._Pressed();
 	}

@@ -18,6 +18,7 @@ public class HackermodeCountdown : Label
 		/* this.Position = new Vector2(0.0f, GetViewportRect().Size.y / 2.5f); */
 		this.Text = "";
 		globals = GetNode("/root/Globals");
+		countdown = countdown_rst;
 	}
 
 	public override void _Process(float delta)
@@ -34,8 +35,8 @@ public class HackermodeCountdown : Label
 			if (reset) {
 				GetNode<Hackermode>("../../Hangman").reset_animate_enter_hackermode();
 				reset = false;
+				countdown = countdown_rst;
 			}
-			countdown = countdown_rst;
 		}
 	}
 }

@@ -1,5 +1,7 @@
 extends Node
 
+var level_up_text = preload("res://LevelUpText.tscn")
+
 var player_position:Vector2 = Vector2.ZERO
 var current_difficulty:int = 1
 var player_is_alive = true
@@ -21,6 +23,7 @@ func get_current_level() -> int:
 	
 func set_current_level(level:int):
 	current_level = level
+	get_tree().get_root().add_child(level_up_text.instance())
 
 func get_player_position() -> Vector2:
 	return player_position
