@@ -11,6 +11,8 @@ var angle_timer_variance = Vector2(5, 60)
 var random_angle:float = 0.0
 var angle_change_timer:int = 0
 
+var is_dead:bool = false
+
 func _ready():
 	randomize_angle()
 
@@ -36,13 +38,15 @@ func _physics_process(_delta):
 		randomize_angle()
 
 func hurt():
-	$CollisionShape2D.disabled = true
-	$Sprite.visible = false
-	$Explosion.emitting = true
-	Globals.fx_manager.InstantiateShock(self.position, 300, 200, 0.01)
-	yield(get_tree().create_timer(2),"timeout")
-	$SfxDead.play()
-	queue_free()
+	if is_dead == false:
+		is_dead = true
+		$CollisionShape2D.disabled = true
+		$Sprite.visible = false
+		$Explosion.emitting = true
+		Globals.fx_manager.InstantiateShock(self.position, 300, 200, 0.01)
+		yield(get_tree().create_timer(2),"timeout")
+		$SfxDead.play()
+		queue_free()
 
 func randomize_angle():
 	angle_change_timer = randi() % int(angle_timer_variance.x) + int(angle_timer_variance.y)
