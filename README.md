@@ -13,3 +13,6 @@
 A game put together during the Creative Coast gamejam of 2021 by four friends with varying experience of Godot and Mono.
 
 The theme of the gamejam was voted to be "The theme is a secret..." by the participants, so we went meta.
+
+Our thanks to Ali Cedroni who supplied most of the sounds for the game:
+https://www.alicedroni.com/
